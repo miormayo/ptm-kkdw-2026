@@ -49,122 +49,130 @@
             position: absolute;
             top: 2%; left: 2%;
             font-family: 'Fira Code', monospace;
-            font-size: 1.2vh;
+            font-size: clamp(10px, 1vw, 14px);
             color: rgba(10, 36, 99, 0.1);
             white-space: pre;
             z-index: -2;
             line-height: 1.6;
         }
 
-        /* PAPARAN UTAMA (MENGISI PENUH SKRIN PC) */
+        /* PAPARAN UTAMA RESPONSIVE */
         #viewport {
-            width: 96vw;
-            height: 94vh;
+            width: 96%;
+            height: 94%;
+            max-width: 1800px;
             background: rgba(255, 255, 255, 0.85);
-            border: 0.5vh solid var(--royal-blue);
-            box-shadow: 0 2vh 4vh rgba(10, 36, 99, 0.15);
+            border: 4px solid var(--royal-blue);
+            box-shadow: 0 10px 30px rgba(10, 36, 99, 0.15);
             backdrop-filter: blur(10px);
             position: relative;
             display: flex;
             flex-direction: column;
-            border-radius: 2vh;
+            border-radius: 20px;
             overflow: hidden;
         }
 
-        /* PENYUDUT HUD */
-        .hud-corner {
-            position: absolute;
-            width: 6vh; height: 6vh;
-            border-color: var(--cyber-cyan);
-            border-style: solid;
-            z-index: 10;
+        /* STRUKTUR SLAID (Boleh Skrol di Skrin Kecil) */
+        #slides-wrapper {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
         }
-        .hud-tl { top: 2vh; left: 2vh; border-width: 0.8vh 0 0 0.8vh; border-top-left-radius: 1.5vh;}
-        .hud-tr { top: 2vh; right: 2vh; border-width: 0.8vh 0.8vh 0 0; border-top-right-radius: 1.5vh;}
-        .hud-bl { bottom: 2vh; left: 2vh; border-width: 0 0 0.8vh 0.8vh; border-bottom-left-radius: 1.5vh;}
-        .hud-br { bottom: 2vh; right: 2vh; border-width: 0 0.8vh 0.8vh 0; border-bottom-right-radius: 1.5vh;}
 
-        /* STRUKTUR SLAID */
         .slide {
             display: none;
-            width: 100%; height: 100%;
-            padding: 4vh 6vw;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            padding: 30px 40px;
             box-sizing: border-box;
             flex-direction: column;
+            overflow-y: auto; /* Membenarkan skrol pada mobile */
             animation: bootUp 0.4s ease-out forwards;
         }
+
         .slide.active { display: flex; }
+
+        /* Custom Scrollbar untuk nampak moden */
+        .slide::-webkit-scrollbar { width: 8px; }
+        .slide::-webkit-scrollbar-track { background: transparent; }
+        .slide::-webkit-scrollbar-thumb { background: var(--cyber-cyan); border-radius: 10px; }
 
         @keyframes bootUp {
             0% { opacity: 0; transform: scale(0.98); }
             100% { opacity: 1; transform: scale(1); }
         }
 
-        /* TIPOGRAFI UTAMA */
+        /* TIPOGRAFI DINAMIK (Auto Resize) */
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 6vh;
+            font-size: clamp(30px, 5vw, 60px);
             color: var(--royal-blue);
             margin: 0;
             text-transform: uppercase;
-            line-height: 1.1;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(20px, 3vw, 40px);
+            color: var(--royal-blue);
+            margin-top: 10px;
         }
 
         .header-title {
             background: var(--royal-blue);
             color: white;
-            font-size: 3.5vh;
-            padding: 1.5vh 3vw;
-            border-radius: 1vh 1vh 0 0;
-            margin-bottom: 2vh;
+            font-size: clamp(20px, 2.5vw, 35px);
+            padding: 15px 30px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
             font-family: 'Orbitron', sans-serif;
             text-align: center;
-            box-shadow: 0 1vh 2vh rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
-        /* GRID 3 PESERTA KEMAS */
+        /* GRID PESERTA AUTO SUSUN */
         .grid-3 {
-            display: flex;
-            justify-content: space-between;
-            gap: 2vw;
-            height: 70vh;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
-        /* KAD PESERTA LENGKAP */
+        /* KAD PESERTA */
         .card {
             background: var(--white-panel);
-            border: 0.4vh solid var(--royal-blue);
-            border-radius: 1.5vh;
-            padding: 1.5vw;
-            flex: 1;
+            border: 4px solid var(--royal-blue);
+            border-radius: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 1vh 2vh rgba(10, 36, 99, 0.1);
+            box-shadow: 0 8px 15px rgba(10, 36, 99, 0.1);
             position: relative;
             transition: transform 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-1vh);
+            transform: translateY(-5px);
             border-color: var(--cyber-cyan);
-            box-shadow: 0 1.5vh 3vh rgba(0, 168, 204, 0.2);
+            box-shadow: 0 12px 25px rgba(0, 168, 204, 0.2);
         }
 
-        /* GAMBAR PESERTA (TIDAK TERPOTONG) */
+        /* GAMBAR PESERTA */
         .img-box {
             width: 100%;
-            height: 30vh;
-            background: #cbd5e1; /* Latar kelabu lembut jika gambar tirus */
-            border-radius: 1vh;
+            height: clamp(200px, 30vh, 350px);
+            background: #cbd5e1; 
+            border-radius: 10px;
             overflow: hidden;
-            border: 0.3vh solid var(--cyber-cyan);
-            margin-bottom: 1.5vh;
+            border: 3px solid var(--cyber-cyan);
+            margin-bottom: 15px;
             position: relative;
         }
 
         .img-box img {
             width: 100%; height: 100%;
-            object-fit: contain; /* Ini pastikan muka & badan masuk semua tanpa potong */
+            object-fit: contain; 
         }
 
         .tag-id {
@@ -173,73 +181,69 @@
             background: var(--royal-blue);
             color: white;
             font-family: 'Fira Code', monospace;
-            font-size: 2.5vh;
-            padding: 0.5vh 1.5vw;
-            border-top-left-radius: 1.5vh;
+            font-size: clamp(18px, 2vw, 24px);
+            padding: 5px 15px;
+            border-top-left-radius: 15px;
             font-weight: bold;
         }
 
         /* MAKLUMAT DIRI */
         .info-name {
-            font-size: 2.3vh;
+            font-size: clamp(18px, 2vw, 24px);
             font-weight: 900;
             color: var(--royal-blue);
             line-height: 1.2;
-            margin-bottom: 0.5vh;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 5.6vh;
+            margin-bottom: 10px;
         }
 
         .info-job {
-            font-size: 1.5vh;
+            font-size: clamp(14px, 1.2vw, 18px);
             color: #475569;
             font-weight: 700;
-            margin-bottom: 1.5vh;
-            padding-bottom: 1vh;
-            border-bottom: 0.2vh dashed #cbd5e1;
-            height: 4.8vh; /* Ruang lebih untuk Pembantu Pembangunan Masyarakat */
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #cbd5e1;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            gap: 5px;
         }
 
         .dept-badge {
             background: var(--cyber-cyan);
             color: white;
-            padding: 0.2vh 0.8vw;
-            border-radius: 0.5vh;
-            font-size: 1.4vh;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: clamp(12px, 1vw, 14px);
             white-space: nowrap;
         }
 
         /* MARKAH & STATUS */
         .marks-container {
             background: #f8fafc;
-            padding: 1vh 1vw;
-            border-radius: 1vh;
-            border: 0.2vh solid #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
             margin-top: auto;
             display: flex;
             flex-direction: column;
-            gap: 0.8vh;
+            gap: 8px;
         }
 
         .mark-row {
             display: flex;
             justify-content: space-between;
-            font-size: 1.7vh;
+            font-size: clamp(14px, 1.2vw, 18px);
             font-weight: 700;
             color: var(--royal-blue);
             font-family: 'Fira Code', monospace;
         }
 
         .mark-row.total {
-            border-top: 0.2vh solid var(--royal-blue);
-            padding-top: 0.8vh;
-            font-size: 1.9vh;
+            border-top: 2px solid var(--royal-blue);
+            padding-top: 8px;
+            font-size: clamp(16px, 1.5vw, 20px);
             color: var(--text-dark);
             font-weight: 900;
         }
@@ -247,21 +251,22 @@
         .status-box {
             text-align: center;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8vh;
+            font-size: clamp(14px, 1.2vw, 18px);
             font-weight: 900;
-            padding: 1vh;
-            border-radius: 0.8vh;
-            margin-top: 1vh;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
             color: white;
             text-transform: uppercase;
         }
-        .status-lulus { background: var(--pass-green); box-shadow: 0 0.5vh 1vh rgba(5, 150, 105, 0.4); }
-        .status-ulang { background: var(--warn-orange); box-shadow: 0 0.5vh 1vh rgba(234, 88, 12, 0.4); }
+        .status-lulus { background: var(--pass-green); box-shadow: 0 5px 10px rgba(5, 150, 105, 0.4); }
+        .status-ulang { background: var(--warn-orange); box-shadow: 0 5px 10px rgba(234, 88, 12, 0.4); }
 
-        /* KAWALAN SLIDE BAWAH */
+        /* KAWALAN SLIDE BAWAH (SENTIASA KELIHATAN) */
         .controls {
-            position: absolute;
-            bottom: 3vh; left: 4vw; right: 4vw;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 40px;
+            border-top: 3px solid var(--royal-blue);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -270,115 +275,115 @@
 
         .tracker {
             font-family: 'Fira Code', monospace;
-            font-size: 2.2vh;
+            font-size: clamp(16px, 1.5vw, 22px);
             color: var(--royal-blue);
             font-weight: bold;
             background: white;
-            padding: 0.5vh 2vw;
-            border-radius: 1vh;
-            border: 0.3vh solid var(--royal-blue);
+            padding: 5px 20px;
+            border-radius: 10px;
+            border: 3px solid var(--royal-blue);
         }
 
         .btn {
             background: var(--royal-blue);
             color: white;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2vh;
-            padding: 1.5vh 3vw;
+            font-size: clamp(14px, 1.5vw, 18px);
+            padding: 12px 30px;
             border: none;
-            border-radius: 5vh;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 1vh 2vh rgba(10, 36, 99, 0.3);
+            box-shadow: 0 5px 15px rgba(10, 36, 99, 0.3);
             transition: 0.3s;
         }
 
         .btn:hover { background: var(--cyber-cyan); transform: scale(1.05); }
 
+        /* --- MEDIA QUERIES UNTUK RESPONSIVE DESIGN --- */
+        /* Untuk Tablet / Skrin Sederhana */
+        @media (max-width: 1100px) {
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Untuk Telefon Pintar / Skrin Kecil */
+        @media (max-width: 768px) {
+            .grid-3 { grid-template-columns: 1fr; }
+            .slide { padding: 15px; }
+            .controls { padding: 15px; flex-direction: column; gap: 15px; }
+            .btn { width: 100%; padding: 15px; }
+            #viewport { height: 98%; width: 98%; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- KOD C++ LATAR BELAKANG -->
     <div class="bg-grid"></div>
     <div class="bg-code">
 #include &lt;KKDW_System.h&gt;
 #include &lt;DatabaseLink.h&gt;
 
-struct ParticipantScore {
-    std::string id;
-    float discipline_50;
-    float comprehension_40;
-    float commitment_10;
-    float total_100;
-    std::string status;
-};
-
-class EvaluationEngine {
+class ResponsiveEngine {
 public:
     void Execute() {
         System::Log("CONNECTING TO SERVER...");
         System::Log("RETRIEVING 40 RECORDS...");
-        System::Log("APPLYING BRIGHT ROYAL FUTURE UI...");
+        System::Log("APPLYING RESPONSIVE BRIGHT UI...");
         Graphics::EnableHighContrast();
         System::BootSlideShow();
     }
 };
 
 int main() {
-    EvaluationEngine engine;
+    ResponsiveEngine engine;
     engine.Execute();
     return 0;
 }
     </div>
 
-    <!-- SKRIN PAPARAN UTAMA -->
     <div id="viewport">
-        <div class="hud-corner hud-tl"></div>
-        <div class="hud-corner hud-tr"></div>
-        <div class="hud-corner hud-bl"></div>
-        <div class="hud-corner hud-br"></div>
 
-        <div id="slides-wrapper" style="width: 100%; height: 100%;">
+        <!-- KANDUNGAN SLAID -->
+        <div id="slides-wrapper">
             
-            <!-- SLAID 1: MUKA HADAPAN -->
+            <!-- SLAID 1 -->
             <div class="slide active">
-                <div style="margin: auto; text-align: center; background: white; padding: 6vh 4vw; border-radius: 2vh; border: 0.5vh solid var(--royal-blue); box-shadow: 0 2vh 4vh rgba(0,0,0,0.05); width: 80%;">
-                    <p style="font-size: 3vh; color: var(--cyber-cyan); font-weight: bold; margin-bottom: 2vh;">BILANGAN 2 TAHUN 2026</p>
-                    <h1 style="font-size: 7vh; line-height: 1;">MESYUARAT PANEL PENGURUSAN</h1>
-                    <h2 style="font-size: 4vh; color: var(--royal-blue); font-family: 'Orbitron'; margin-top: 1vh;">PROGRAM TRANSFORMASI MINDA KKDW</h2>
+                <div style="margin: auto; text-align: center; background: white; padding: 5% 5%; border-radius: 20px; border: 4px solid var(--royal-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 85%;">
+                    <p style="font-size: clamp(16px, 2vw, 30px); color: var(--cyber-cyan); font-weight: bold; margin-bottom: 15px;">BILANGAN 2 TAHUN 2026</p>
+                    <h1>MESYUARAT PANEL PENGURUSAN</h1>
+                    <h2>PROGRAM TRANSFORMASI MINDA KKDW</h2>
                     
-                    <div style="display: flex; justify-content: center; gap: 3vw; margin-top: 5vh;">
-                        <div style="background: var(--bg-bright); padding: 2vh 3vw; border-radius: 1.5vh; border-bottom: 0.6vh solid var(--royal-blue);">
-                            <i class="fa-solid fa-calendar-days" style="font-size: 4vh; color: var(--royal-blue); margin-bottom: 1vh;"></i>
-                            <div style="font-size: 2.5vh; font-weight: bold;">12 JUN 2026</div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px;">
+                        <div style="background: var(--bg-bright); padding: 15px 30px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 200px;">
+                            <i class="fa-solid fa-calendar-days" style="font-size: 30px; color: var(--royal-blue); margin-bottom: 10px;"></i>
+                            <div style="font-size: clamp(16px, 1.5vw, 24px); font-weight: bold;">12 JUN 2026</div>
                         </div>
-                        <div style="background: var(--bg-bright); padding: 2vh 3vw; border-radius: 1.5vh; border-bottom: 0.6vh solid var(--royal-blue);">
-                            <i class="fa-solid fa-clock" style="font-size: 4vh; color: var(--royal-blue); margin-bottom: 1vh;"></i>
-                            <div style="font-size: 2.5vh; font-weight: bold;">3.00 PETANG</div>
+                        <div style="background: var(--bg-bright); padding: 15px 30px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 200px;">
+                            <i class="fa-solid fa-clock" style="font-size: 30px; color: var(--royal-blue); margin-bottom: 10px;"></i>
+                            <div style="font-size: clamp(16px, 1.5vw, 24px); font-weight: bold;">3.00 PETANG</div>
                         </div>
-                        <div style="background: var(--bg-bright); padding: 2vh 3vw; border-radius: 1.5vh; border-bottom: 0.6vh solid var(--royal-blue);">
-                            <i class="fa-solid fa-location-crosshairs" style="font-size: 4vh; color: var(--royal-blue); margin-bottom: 1vh;"></i>
-                            <div style="font-size: 2.5vh; font-weight: bold;">BILIK ASTER, ARAS 17</div>
+                        <div style="background: var(--bg-bright); padding: 15px 30px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 200px;">
+                            <i class="fa-solid fa-location-crosshairs" style="font-size: 30px; color: var(--royal-blue); margin-bottom: 10px;"></i>
+                            <div style="font-size: clamp(16px, 1.5vw, 24px); font-weight: bold;">BILIK ASTER, ARAS 17</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SLAID 2: AGENDA -->
+            <!-- SLAID 2 -->
             <div class="slide">
                 <div class="header-title">AGENDA MESYUARAT UTAMA</div>
-                <div style="display: flex; flex-direction: column; gap: 3vh; margin: auto; width: 80%;">
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; font-size: 3.5vh; font-weight: bold; box-shadow: 0 1vh 2vh rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 2vw; font-size: 4.5vh;">01</span> Perutusan Pengerusi
+                <div style="display: flex; flex-direction: column; gap: 20px; margin: auto; width: 90%;">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: clamp(18px, 2.5vw, 32px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">01</span> Perutusan Pengerusi
                     </div>
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; font-size: 3.5vh; font-weight: bold; box-shadow: 0 1vh 2vh rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 2vw; font-size: 4.5vh;">02</span> Pengesahan Minit Mesyuarat Panel PTM Bil. 1/2025
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: clamp(18px, 2.5vw, 32px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">02</span> Pengesahan Minit Mesyuarat Panel PTM Bil. 1/2025
                     </div>
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; font-size: 3.5vh; font-weight: bold; box-shadow: 0 1vh 2vh rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 2vw; font-size: 4.5vh;">03</span> Pembentangan dan Laporan Markah Penilaian Peserta
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: clamp(18px, 2.5vw, 32px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">03</span> Pembentangan Laporan Penilaian Peserta
                     </div>
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; font-size: 3.5vh; font-weight: bold; box-shadow: 0 1vh 2vh rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 2vw; font-size: 4.5vh;">04</span> Ulasan Fasilitator & Penutup
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: clamp(18px, 2.5vw, 32px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">04</span> Ulasan Fasilitator & Penutup
                     </div>
                 </div>
             </div>
@@ -386,31 +391,28 @@ int main() {
             <!-- JANAAN DINAMIK SLAID 3 - 16 AKAN MASUK DI SINI -->
             <div id="dynamic-participant-slides" style="display: contents;"></div>
 
-            <!-- SLAID 17: ULASAN FASILITATOR (KEMAS KINI TEKS TEPAT) -->
+            <!-- SLAID 17 -->
             <div class="slide">
                 <div class="header-title" style="background: var(--cyber-cyan);">ULASAN FASILITATOR (BAKAT BAHARU KKDW)</div>
-                <div style="margin: auto; width: 95%; display: flex; flex-direction: column; gap: 2.5vh;">
+                <div style="margin: auto; width: 95%; display: flex; flex-direction: column; gap: 20px;">
                     
-                    <!-- Ulasan No 03 -->
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; box-shadow: 0 1vh 2vh rgba(0,0,0,0.1); border-radius: 1.5vh;">
-                        <h3 style="margin: 0 0 1vh 0; color: var(--royal-blue); font-size: 3vh; font-family: 'Orbitron';">No 03 - NUR AIN NADIAH BINTI MOHD KHUDARI</h3>
-                        <p style="margin: 0; font-size: 2.4vh; line-height: 1.5; color: var(--text-dark);">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px;">
+                        <h3 style="margin: 0 0 10px 0; color: var(--royal-blue); font-size: clamp(18px, 2vw, 26px); font-family: 'Orbitron';">No 03 - NUR AIN NADIAH BINTI MOHD KHUDARI</h3>
+                        <p style="margin: 0; font-size: clamp(14px, 1.5vw, 20px); line-height: 1.6; color: var(--text-dark);">
                             <span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Pengacara Majlis.</span> Bijak bermain dengan intonasi suara supaya penyampaian tidak mendatar (monotonous) dan berjaya mengawal kelajuan bercakap dengan tenang dan teratur.
                         </p>
                     </div>
 
-                    <!-- Ulasan No 14 -->
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; box-shadow: 0 1vh 2vh rgba(0,0,0,0.1); border-radius: 1.5vh;">
-                        <h3 style="margin: 0 0 1vh 0; color: var(--royal-blue); font-size: 3vh; font-family: 'Orbitron';">No 14 - RAJIB BIN HUSSIN</h3>
-                        <p style="margin: 0; font-size: 2.4vh; line-height: 1.5; color: var(--text-dark);">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px;">
+                        <h3 style="margin: 0 0 10px 0; color: var(--royal-blue); font-size: clamp(18px, 2vw, 26px); font-family: 'Orbitron';">No 14 - RAJIB BIN HUSSIN</h3>
+                        <p style="margin: 0; font-size: clamp(14px, 1.5vw, 20px); line-height: 1.6; color: var(--text-dark);">
                             <span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Pengacara Majlis.</span> Mempunyai sebutan (diction) yang terang dan projection suara yang bertenaga dan Memiliki stage presence yang kuat. Bijak berkomunikasi dan menghidupkan suasana majlis dengan mengawal keadaan majlis.
                         </p>
                     </div>
 
-                    <!-- Ulasan No 15 -->
-                    <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; box-shadow: 0 1vh 2vh rgba(0,0,0,0.1); border-radius: 1.5vh;">
-                        <h3 style="margin: 0 0 1vh 0; color: var(--royal-blue); font-size: 3vh; font-family: 'Orbitron';">No 15 - NURUL AIN BINTI ZAKARIA</h3>
-                        <p style="margin: 0; font-size: 2.4vh; line-height: 1.5; color: var(--text-dark);">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px;">
+                        <h3 style="margin: 0 0 10px 0; color: var(--royal-blue); font-size: clamp(18px, 2vw, 26px); font-family: 'Orbitron';">No 15 - NURUL AIN BINTI ZAKARIA</h3>
+                        <p style="margin: 0; font-size: clamp(14px, 1.5vw, 20px); line-height: 1.6; color: var(--text-dark);">
                             <span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Berlakon.</span> Penjiwaan Watak yang Mendalam: Berjaya menyelami watak dengan ikhlas, bukan sekadar menghafal dialog. Ekspresi Wajah yang Hidup dan mampu menyampaikan rasa kepada penonton. Bijak mengawal perubahan emosi dengan begitu natural.
                         </p>
                     </div>
@@ -418,20 +420,20 @@ int main() {
                 </div>
             </div>
 
-            <!-- SLAID 18: PENUTUP -->
+            <!-- SLAID 18 -->
             <div class="slide">
-                <div style="margin: auto; text-align: center; background: white; padding: 8vh 4vw; border-radius: 2vh; border: 0.6vh solid var(--pass-green); box-shadow: 0 2vh 4vh rgba(5, 150, 105, 0.2); width: 80%;">
-                    <i class="fa-solid fa-shield-check" style="font-size: 15vh; color: var(--pass-green); margin-bottom: 2vh;"></i>
-                    <h1 style="font-size: 8vh; color: var(--pass-green);">SISTEM SELESAI</h1>
-                    <p style="font-size: 4vh; font-weight: bold; color: var(--royal-blue); margin-top: 2vh;">Sesi Pembentangan Panel Pengurusan Telah Berakhir.</p>
-                    <div style="height: 0.6vh; background: var(--royal-blue); width: 10vw; margin: 4vh auto;"></div>
-                    <h2 style="font-size: 6vh; font-family: 'Orbitron'; color: var(--royal-blue);">TERIMA KASIH</h2>
+                <div style="margin: auto; text-align: center; background: white; padding: 5% 5%; border-radius: 20px; border: 5px solid var(--pass-green); box-shadow: 0 10px 30px rgba(5, 150, 105, 0.2); width: 85%;">
+                    <i class="fa-solid fa-shield-check" style="font-size: clamp(60px, 10vw, 120px); color: var(--pass-green); margin-bottom: 20px;"></i>
+                    <h1 style="font-size: clamp(35px, 6vw, 80px); color: var(--pass-green);">SISTEM SELESAI</h1>
+                    <p style="font-size: clamp(18px, 2.5vw, 35px); font-weight: bold; color: var(--royal-blue); margin-top: 15px;">Sesi Pembentangan Panel Pengurusan Telah Berakhir.</p>
+                    <div style="height: 5px; background: var(--royal-blue); width: 100px; margin: 30px auto;"></div>
+                    <h2 style="font-size: clamp(24px, 4vw, 50px); font-family: 'Orbitron'; color: var(--royal-blue);">TERIMA KASIH</h2>
                 </div>
             </div>
 
         </div>
 
-        <!-- BUTANG NAVIGASI -->
+        <!-- PANEL NAVIGASI BAWAH (KEKAL STATIK) -->
         <div class="controls">
             <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
             <div class="tracker" id="slide-tracker">SLIDE: 1 / 18</div>
@@ -439,9 +441,8 @@ int main() {
         </div>
     </div>
 
-    <!-- JAVASCRIPT: DATA & LOGIK SLAID -->
+    <!-- JAVASCRIPT LOGIK & DATA -->
     <script>
-        // DATA LENGKAP 40 PESERTA BERSERTA MARKAH & JAWATAN PENUH
         const db = [
             { id: "001", name: "NUR SHARIMAH BINTI MOHD ROFENDI", pos: "PEMBANTU TADBIR N1", dept: "INFRA", dis: "49.47", kef: "33.00", kom: "10.00", jum: "92.47", stat: "Lulus PTM" },
             { id: "002", name: "JOCELYN JOE", pos: "PEMBANTU TADBIR W1", dept: "INFRA", dis: "50.00", kef: "31.00", kom: "10.00", jum: "91.00", stat: "Lulus PTM" },
@@ -485,7 +486,6 @@ int main() {
             { id: "040", name: "SHAHERAN BINTI FAIZAL", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "22.00", kom: "10.00", jum: "81.74", stat: "Ulang Kefahaman" }
         ];
 
-        // JANA KAD PESERTA KE DALAM HTML SECARA DINAMIK
         const container = document.getElementById('dynamic-participant-slides');
         
         for (let i = 0; i < db.length; i += 3) {
@@ -497,10 +497,10 @@ int main() {
                 let statusClass = p.stat.includes("Lulus") ? "status-lulus" : "status-ulang";
                 let statusText = p.stat.includes("Lulus") ? "LULUS PTM" : "ULANG KEFAHAMAN";
 
-                // KOD ANTI RALAT 404 UNTUK GAMBAR (Cuba .jpg kemudian .JPG)
                 return `
                 <div class="card">
                     <div class="img-box">
+                        <!-- AUTO-FALLBACK: JPG huruf kecil ke JPG huruf besar -->
                         <img src="${p.id}.jpg" alt="${p.name}" onerror="if(this.src.indexOf('.jpg') !== -1){ this.src = '${p.id}.JPG'; } else { this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+'; }">
                         <div class="tag-id">${p.id}</div>
                     </div>
@@ -513,15 +513,15 @@ int main() {
                     
                     <div class="marks-container">
                         <div class="mark-row">
-                            <span>DISIPLIN <span style="color:#64748b;font-size:1.4vh;">(50)</span></span>
+                            <span>DISIPLIN </span>
                             <span>${p.dis}</span>
                         </div>
                         <div class="mark-row">
-                            <span>KEFAHAMAN <span style="color:#64748b;font-size:1.4vh;">(40)</span></span>
+                            <span>KEFAHAMAN </span>
                             <span>${p.kef}</span>
                         </div>
                         <div class="mark-row">
-                            <span>KOMITMEN <span style="color:#64748b;font-size:1.4vh;">(10)</span></span>
+                            <span>KOMITMEN </span>
                             <span>${p.kom}</span>
                         </div>
                         <div class="mark-row total">
@@ -542,7 +542,6 @@ int main() {
             container.appendChild(slideDiv);
         }
 
-        // FUNGSI NAVIGASI SLAID
         let currentIndex = 0;
         const slides = document.querySelectorAll('.slide');
 
@@ -550,11 +549,14 @@ int main() {
             slides[currentIndex].classList.remove('active');
             currentIndex += direction;
             
-            // Limitasi Slaid
             if (currentIndex >= slides.length) currentIndex = 0;
             if (currentIndex < 0) currentIndex = slides.length - 1;
             
             slides[currentIndex].classList.add('active');
+            
+            // Auto-scroll slaid ke atas bila tukar (untuk skrin kecil)
+            slides[currentIndex].scrollTop = 0;
+            
             updateTracker();
         }
 
@@ -562,13 +564,11 @@ int main() {
             document.getElementById('slide-tracker').innerText = `SLIDE: ${currentIndex + 1} / ${slides.length}`;
         }
 
-        // Fungsi Kekunci Keyboard (Anak Panah Kiri/Kanan)
         window.addEventListener('keydown', (e) => {
             if (e.key === "ArrowRight") changeSlide(1);
             if (e.key === "ArrowLeft") changeSlide(-1);
         });
 
-        // Tetapkan Paparan Awal
         updateTracker();
     </script>
 </body>
