@@ -56,7 +56,7 @@
             line-height: 1.6;
         }
 
-        /* PAPARAN UTAMA (MENGISI PENUH SKRIN) */
+        /* PAPARAN UTAMA (MENGISI PENUH SKRIN PC) */
         #viewport {
             width: 96vw;
             height: 94vh;
@@ -122,7 +122,7 @@
             box-shadow: 0 1vh 2vh rgba(0,0,0,0.1);
         }
 
-        /* GRID 3 PESERTA */
+        /* GRID 3 PESERTA KEMAS */
         .grid-3 {
             display: flex;
             justify-content: space-between;
@@ -150,11 +150,11 @@
             box-shadow: 0 1.5vh 3vh rgba(0, 168, 204, 0.2);
         }
 
-        /* GAMBAR PESERTA */
+        /* GAMBAR PESERTA (TIDAK TERPOTONG) */
         .img-box {
             width: 100%;
             height: 30vh;
-            background: #e2e8f0;
+            background: #cbd5e1; /* Latar kelabu lembut jika gambar tirus */
             border-radius: 1vh;
             overflow: hidden;
             border: 0.3vh solid var(--cyber-cyan);
@@ -164,8 +164,7 @@
 
         .img-box img {
             width: 100%; height: 100%;
-            object-fit: contain; 
-            background-color: #cbd5e1;
+            object-fit: contain; /* Ini pastikan muka & badan masuk semua tanpa potong */
         }
 
         .tag-id {
@@ -182,7 +181,7 @@
 
         /* MAKLUMAT DIRI */
         .info-name {
-            font-size: 2.4vh;
+            font-size: 2.3vh;
             font-weight: 900;
             color: var(--royal-blue);
             line-height: 1.2;
@@ -191,17 +190,17 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            height: 5.8vh;
+            height: 5.6vh;
         }
 
         .info-job {
-            font-size: 1.6vh;
+            font-size: 1.5vh;
             color: #475569;
             font-weight: 700;
             margin-bottom: 1.5vh;
             padding-bottom: 1vh;
             border-bottom: 0.2vh dashed #cbd5e1;
-            height: 4.2vh; /* Ditinggikan sedikit untuk ejaan jawatan penuh */
+            height: 4.8vh; /* Ruang lebih untuk Pembantu Pembangunan Masyarakat */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -212,7 +211,8 @@
             color: white;
             padding: 0.2vh 0.8vw;
             border-radius: 0.5vh;
-            font-size: 1.5vh;
+            font-size: 1.4vh;
+            white-space: nowrap;
         }
 
         /* MARKAH & STATUS */
@@ -258,7 +258,7 @@
         .status-lulus { background: var(--pass-green); box-shadow: 0 0.5vh 1vh rgba(5, 150, 105, 0.4); }
         .status-ulang { background: var(--warn-orange); box-shadow: 0 0.5vh 1vh rgba(234, 88, 12, 0.4); }
 
-        /* KAWALAN SLIDE */
+        /* KAWALAN SLIDE BAWAH */
         .controls {
             position: absolute;
             bottom: 3vh; left: 4vw; right: 4vw;
@@ -298,7 +298,7 @@
 </head>
 <body>
 
-    <!-- LATAR BELAKANG KOD C++ -->
+    <!-- KOD C++ LATAR BELAKANG -->
     <div class="bg-grid"></div>
     <div class="bg-code">
 #include &lt;KKDW_System.h&gt;
@@ -331,7 +331,7 @@ int main() {
 }
     </div>
 
-    <!-- SKRIN UTAMA -->
+    <!-- SKRIN PAPARAN UTAMA -->
     <div id="viewport">
         <div class="hud-corner hud-tl"></div>
         <div class="hud-corner hud-tr"></div>
@@ -340,7 +340,7 @@ int main() {
 
         <div id="slides-wrapper" style="width: 100%; height: 100%;">
             
-            <!-- SLAID 1: PENGENALAN -->
+            <!-- SLAID 1: MUKA HADAPAN -->
             <div class="slide active">
                 <div style="margin: auto; text-align: center; background: white; padding: 6vh 4vw; border-radius: 2vh; border: 0.5vh solid var(--royal-blue); box-shadow: 0 2vh 4vh rgba(0,0,0,0.05); width: 80%;">
                     <p style="font-size: 3vh; color: var(--cyber-cyan); font-weight: bold; margin-bottom: 2vh;">BILANGAN 2 TAHUN 2026</p>
@@ -350,7 +350,7 @@ int main() {
                     <div style="display: flex; justify-content: center; gap: 3vw; margin-top: 5vh;">
                         <div style="background: var(--bg-bright); padding: 2vh 3vw; border-radius: 1.5vh; border-bottom: 0.6vh solid var(--royal-blue);">
                             <i class="fa-solid fa-calendar-days" style="font-size: 4vh; color: var(--royal-blue); margin-bottom: 1vh;"></i>
-                            <div style="font-size: 2.5vh; font-weight: bold;">18 JUN 2026</div>
+                            <div style="font-size: 2.5vh; font-weight: bold;">12 JUN 2026</div>
                         </div>
                         <div style="background: var(--bg-bright); padding: 2vh 3vw; border-radius: 1.5vh; border-bottom: 0.6vh solid var(--royal-blue);">
                             <i class="fa-solid fa-clock" style="font-size: 4vh; color: var(--royal-blue); margin-bottom: 1vh;"></i>
@@ -383,14 +383,15 @@ int main() {
                 </div>
             </div>
 
-            <!-- CONTAINER UNTUK JANAAN KAD PESERTA (SLAID 3-16) -->
+            <!-- JANAAN DINAMIK SLAID 3 - 16 AKAN MASUK DI SINI -->
             <div id="dynamic-participant-slides" style="display: contents;"></div>
 
-            <!-- SLAID 17: ULASAN FASILITATOR (BARU) -->
+            <!-- SLAID 17: ULASAN FASILITATOR (KEMAS KINI TEKS TEPAT) -->
             <div class="slide">
                 <div class="header-title" style="background: var(--cyber-cyan);">ULASAN FASILITATOR (BAKAT BAHARU KKDW)</div>
                 <div style="margin: auto; width: 95%; display: flex; flex-direction: column; gap: 2.5vh;">
                     
+                    <!-- Ulasan No 03 -->
                     <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; box-shadow: 0 1vh 2vh rgba(0,0,0,0.1); border-radius: 1.5vh;">
                         <h3 style="margin: 0 0 1vh 0; color: var(--royal-blue); font-size: 3vh; font-family: 'Orbitron';">No 03 - NUR AIN NADIAH BINTI MOHD KHUDARI</h3>
                         <p style="margin: 0; font-size: 2.4vh; line-height: 1.5; color: var(--text-dark);">
@@ -398,6 +399,7 @@ int main() {
                         </p>
                     </div>
 
+                    <!-- Ulasan No 14 -->
                     <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; box-shadow: 0 1vh 2vh rgba(0,0,0,0.1); border-radius: 1.5vh;">
                         <h3 style="margin: 0 0 1vh 0; color: var(--royal-blue); font-size: 3vh; font-family: 'Orbitron';">No 14 - RAJIB BIN HUSSIN</h3>
                         <p style="margin: 0; font-size: 2.4vh; line-height: 1.5; color: var(--text-dark);">
@@ -405,6 +407,7 @@ int main() {
                         </p>
                     </div>
 
+                    <!-- Ulasan No 15 -->
                     <div style="background: white; border-left: 1.5vh solid var(--royal-blue); padding: 3vh; box-shadow: 0 1vh 2vh rgba(0,0,0,0.1); border-radius: 1.5vh;">
                         <h3 style="margin: 0 0 1vh 0; color: var(--royal-blue); font-size: 3vh; font-family: 'Orbitron';">No 15 - NURUL AIN BINTI ZAKARIA</h3>
                         <p style="margin: 0; font-size: 2.4vh; line-height: 1.5; color: var(--text-dark);">
@@ -415,7 +418,7 @@ int main() {
                 </div>
             </div>
 
-            <!-- SLAID 18: PENUTUP / TERIMA KASIH -->
+            <!-- SLAID 18: PENUTUP -->
             <div class="slide">
                 <div style="margin: auto; text-align: center; background: white; padding: 8vh 4vw; border-radius: 2vh; border: 0.6vh solid var(--pass-green); box-shadow: 0 2vh 4vh rgba(5, 150, 105, 0.2); width: 80%;">
                     <i class="fa-solid fa-shield-check" style="font-size: 15vh; color: var(--pass-green); margin-bottom: 2vh;"></i>
@@ -428,7 +431,7 @@ int main() {
 
         </div>
 
-        <!-- BUTANG NAVIGASI DI BAWAH -->
+        <!-- BUTANG NAVIGASI -->
         <div class="controls">
             <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
             <div class="tracker" id="slide-tracker">SLIDE: 1 / 18</div>
@@ -436,8 +439,9 @@ int main() {
         </div>
     </div>
 
+    <!-- JAVASCRIPT: DATA & LOGIK SLAID -->
     <script>
-        // DATA LENGKAP 40 PESERTA BERSERTA MARKAH SEBENAR DARI EXCEL
+        // DATA LENGKAP 40 PESERTA BERSERTA MARKAH & JAWATAN PENUH
         const db = [
             { id: "001", name: "NUR SHARIMAH BINTI MOHD ROFENDI", pos: "PEMBANTU TADBIR N1", dept: "INFRA", dis: "49.47", kef: "33.00", kom: "10.00", jum: "92.47", stat: "Lulus PTM" },
             { id: "002", name: "JOCELYN JOE", pos: "PEMBANTU TADBIR W1", dept: "INFRA", dis: "50.00", kef: "31.00", kom: "10.00", jum: "91.00", stat: "Lulus PTM" },
@@ -453,7 +457,7 @@ int main() {
             { id: "012", name: "CHE SITI NADIAH BINTI CHE ROSDI", pos: "PEM. KHIDMAT AM H1", dept: "KKDW", dis: "49.74", kef: "30.00", kom: "10.00", jum: "89.74", stat: "Lulus PTM" },
             { id: "013", name: "MUHAMMAD HARITH HAIKAL", pos: "JURUTEKNIK FT1", dept: "KEMAS", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
             { id: "014", name: "RAJIB BIN HUSSIN", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "KEMAS", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
-            { id: "015", name: "NURUL AIN BINTI ZAKARIA", pos: "PEN. PEG. PEMB S5", dept: "KEMAS", dis: "50.00", kef: "27.00", kom: "10.00", jum: "87.00", stat: "Ulang Kefahaman" },
+            { id: "015", name: "NURUL AIN BINTI ZAKARIA", pos: "PENOLONG PEGAWAI PEMBANGUNAN MASYARAKAT S5", dept: "KEMAS", dis: "50.00", kef: "27.00", kom: "10.00", jum: "87.00", stat: "Ulang Kefahaman" },
             { id: "016", name: "MUHAMMAD NAZIRUL AMINI BIN ABDUL LAHAM", pos: "JURUTEKNIK FT1", dept: "JAKOA", dis: "50.00", kef: "27.00", kom: "9.34", jum: "86.34", stat: "Ulang Kefahaman" },
             { id: "017", name: "NOR ZUBAIDAH BINTI CHE HUSAIN", pos: "PEMBANTU TADBIR W1", dept: "JAKOA", dis: "50.00", kef: "32.00", kom: "9.87", jum: "91.87", stat: "Lulus PTM" },
             { id: "018", name: "NURAISYAH NAFISAH BINTI ABDULLAH", pos: "PEM. KHIDMAT AM H1", dept: "JAKOA", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
@@ -493,16 +497,17 @@ int main() {
                 let statusClass = p.stat.includes("Lulus") ? "status-lulus" : "status-ulang";
                 let statusText = p.stat.includes("Lulus") ? "LULUS PTM" : "ULANG KEFAHAMAN";
 
+                // KOD ANTI RALAT 404 UNTUK GAMBAR (Cuba .jpg kemudian .JPG)
                 return `
                 <div class="card">
                     <div class="img-box">
-                        <img src="${p.id}.jpg" alt="${p.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+'">
+                        <img src="${p.id}.jpg" alt="${p.name}" onerror="if(this.src.indexOf('.jpg') !== -1){ this.src = '${p.id}.JPG'; } else { this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+'; }">
                         <div class="tag-id">${p.id}</div>
                     </div>
                     
                     <div class="info-name">${p.name}</div>
                     <div class="info-job">
-                        <span style="flex:1;">${p.pos}</span>
+                        <span style="flex:1; padding-right:5px;">${p.pos}</span>
                         <span class="dept-badge">${p.dept}</span>
                     </div>
                     
