@@ -30,7 +30,7 @@
             background-color: var(--bg-bright);
             color: var(--text-dark);
             font-family: 'Rajdhani', sans-serif;
-            height: 100dvh; /* dvh membetulkan isu address bar di mobile */
+            height: 100dvh;
             width: 100vw;
             display: flex;
             justify-content: center;
@@ -127,14 +127,14 @@
         /* STRUKTUR SLAID (FLEXIBLE WRAPPER) */
         #slides-wrapper {
             flex: 1; 
-            min-height: 0; /* Penting untuk benarkan scrolling di dalam flexbox */
+            min-height: 0; 
             position: relative;
             overflow: hidden;
         }
 
         .slide {
             position: absolute;
-            inset: 0; /* ganti top:0, left:0, width:100%, height:100% */
+            inset: 0;
             padding: clamp(15px, 3vh, 40px) clamp(15px, 4vw, 40px);
             display: flex;
             flex-direction: column;
@@ -159,7 +159,7 @@
         .slide::-webkit-scrollbar-track { background: transparent; }
         .slide::-webkit-scrollbar-thumb { background: var(--cyber-cyan); border-radius: 10px; }
 
-        /* TIPOGRAFI DINAMIK KESELURUHAN PERANTI */
+        /* TIPOGRAFI DINAMIK */
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(22px, 4vw, 55px);
@@ -191,11 +191,10 @@
             flex-shrink: 0;
         }
 
-        /* SISTEM GRID AUTO RESPONSIVE (PC, TABLET, PHONE) */
+        /* SISTEM GRID AUTO RESPONSIVE */
         .grid-3 {
             display: grid;
             gap: 20px;
-            /* Grid Utama untuk PC (3 Kolum) */
             grid-template-columns: repeat(3, 1fr); 
             padding-bottom: 20px;
         }
@@ -220,10 +219,10 @@
             box-shadow: 0 15px 30px rgba(0, 168, 204, 0.25), inset 0 -4px 0 rgba(0, 168, 204, 0.4);
         }
 
-        /* GAMBAR PESERTA DENGAN ASPECT RATIO (Mengekalkan nisbah tanpa herot) */
+        /* GAMBAR PESERTA DENGAN ASPECT RATIO */
         .img-box {
             width: 100%;
-            aspect-ratio: 4/3; /* Imej akan mengekalkan saiz 4:3 walau di skrin mana pun */
+            aspect-ratio: 4/3; 
             background: #cbd5e1; 
             border-radius: 10px;
             overflow: hidden;
@@ -391,38 +390,31 @@
         .btn:hover { background: linear-gradient(to bottom, #00c6f0, var(--cyber-cyan)); transform: translateY(-2px); }
         .btn:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(10, 36, 99, 0.3); }
 
-        /* =======================================================
-           MEDIA QUERIES KHAS UNTUK RESPONSIVE SEMUA PERANTI
-           ======================================================= */
+        /* --- MEDIA QUERIES UNTUK RESPONSIVE --- */
 
-        /* 1. TABLET (iPad, Galaxy Tab dll.) */
         @media (max-width: 1024px) {
-            .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 15px; } /* Jadi 2 Kolum */
-            .img-box { aspect-ratio: 16/9; } /* Gambar lebih lebar di tablet */
+            .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 15px; } 
+            .img-box { aspect-ratio: 16/9; } 
             #viewport { width: 98vw; height: 96dvh; }
         }
 
-        /* 2. TELEFON PINTAR (Mobile Phones) */
         @media (max-width: 768px) {
-            body { background: white; } /* Buang background luar untuk jimat memori */
+            body { background: white; } 
             
             #viewport { 
-                width: 100vw; /* Penuh Skrin */
+                width: 100vw; 
                 height: 100dvh; 
-                border: none; /* Buang border tebal */
-                border-radius: 0; /* Buang bucu bulat */
+                border: none; 
+                border-radius: 0; 
                 box-shadow: none;
             }
 
-            .grid-3 { grid-template-columns: 1fr; } /* Jadi 1 Kolum tegak */
-            .img-box { aspect-ratio: auto; height: 180px; } /* Saiz statik untuk phone */
-            
-            /* Ruang kandungan dalaman slide diseimbangkan */
+            .grid-3 { grid-template-columns: 1fr; } 
+            .img-box { aspect-ratio: auto; height: 180px; } 
             .slide { padding: 15px 15px 30px 15px; } 
 
-            /* Susunan Butang dan Tracking (Controls) untuk Telefon */
             .controls {
-                flex-direction: column; /* Susun menegak */
+                flex-direction: column; 
                 padding: 12px;
                 gap: 12px;
             }
@@ -431,17 +423,16 @@
                 width: 100%;
                 justify-content: space-between;
                 gap: 10px;
-                order: 1; /* Tracking duduk atas */
+                order: 1; 
             }
 
             .tracker {
-                flex: 1; /* Bahagi ruang sama rata */
+                flex: 1; 
                 justify-content: center;
                 padding: 8px 5px;
                 font-size: 13px;
             }
 
-            /* Butang Next / Prev duduk bersebelahan bawah tracking */
             .mobile-btn-group {
                 display: flex;
                 width: 100%;
@@ -450,23 +441,19 @@
             }
 
             .btn {
-                flex: 1; /* Butang bahagi 50/50 */
+                flex: 1; 
                 padding: 12px;
                 font-size: 13px;
             }
 
-            /* Sembunyikan flex-container palsu di HTML dan guna sistem baru */
-            .desktop-btn-prev { display: none; }
-            .desktop-btn-next { display: none; }
+            .desktop-btn-prev, .desktop-btn-next { display: none; }
             .mobile-btn-group { display: flex !important; }
         }
 
-        /* Sorok susunan Mobile di Desktop/Tablet */
         @media (min-width: 769px) {
             .mobile-btn-group { display: none !important; }
         }
 
-        /* 3. SKRIN SANGAT KECIL (Contoh: iPhone SE / 5) */
         @media (max-width: 380px) {
             .tracker { font-size: 11px; padding: 6px; }
             .btn { font-size: 11px; padding: 10px 5px; }
@@ -541,6 +528,93 @@ class UI {
                 </div>
             </div>
 
+            <div class="slide">
+                <div class="header-title" style="background: linear-gradient(135deg, var(--royal-blue), #1e3c87);">PERUTUSAN PENGERUSI</div>
+                <div style="margin: auto; width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-radius: 10px; display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+                        <div style="flex-shrink: 0; text-align: center; width: 100px;">
+                            <i class="fa-solid fa-microphone-lines" style="font-size: 60px; color: var(--cyber-cyan);"></i>
+                        </div>
+                        <div style="flex: 1; min-width: 250px;">
+                            <p style="font-size: clamp(16px, 1.8vw, 22px); line-height: 1.6; color: var(--text-dark); margin: 0; font-weight: 600;">
+                                Ucapan alu-aluan kepada hadirin dan memaklumkan keperluan <span style="color: var(--royal-blue); font-weight: 900;">Panel PTM</span> untuk menyemak <span style="color: var(--cyber-cyan); font-weight: 900;">laporan kehadiran</span> dan <span style="color: var(--cyber-cyan); font-weight: 900;">laporan penilaian</span> sepanjang program bagi setiap pegawai yang menghadiri PTM.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="header-title" style="background: linear-gradient(135deg, #0f172a, var(--royal-blue));">PROFIL & DEMOGRAFI PESERTA PTM 2026</div>
+                <div style="margin: auto; width: 100%; max-width: 1000px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+                        
+                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--pass-green); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                            <div style="font-size: clamp(40px, 5vw, 60px); font-weight: 900; color: var(--pass-green); font-family: 'Orbitron';">40</div>
+                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--text-dark); margin-top: 10px; text-transform: uppercase;">Jumlah Peserta</div>
+                        </div>
+
+                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">25</div>
+                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">JAKOA</div>
+                        </div>
+
+                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">9</div>
+                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">KKDW</div>
+                        </div>
+
+                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">3</div>
+                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">KEMAS</div>
+                        </div>
+
+                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">3</div>
+                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">INFRA</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="header-title" style="background: linear-gradient(135deg, var(--royal-blue), #007a99);">KRITERIA PENILAIAN PTM</div>
+                <div style="margin: auto; width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 15px;">
+                    
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 8px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px;">
+                        <div style="background: var(--cyber-cyan); color: white; padding: 15px; border-radius: 8px; font-size: clamp(20px, 2.5vw, 28px); font-family: 'Orbitron'; font-weight: bold; text-align: center; min-width: 90px;">50%</div>
+                        <div>
+                            <h3 style="margin: 0 0 5px 0; color: var(--royal-blue); font-size: clamp(16px, 1.8vw, 22px);">DISIPLIN DAN PERSONALITI</h3>
+                            <p style="margin: 0; font-size: clamp(13px, 1.4vw, 16px); color: var(--text-dark); font-weight: 600;">
+                                Kehadiran (10) &nbsp;&bull;&nbsp; Tingkah Laku (10) &nbsp;&bull;&nbsp; Ketepatan Masa (10) &nbsp;&bull;&nbsp; Etika Berpakaian (10) &nbsp;&bull;&nbsp; Komunikasi (10)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 8px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px;">
+                        <div style="background: var(--cyber-cyan); color: white; padding: 15px; border-radius: 8px; font-size: clamp(20px, 2.5vw, 28px); font-family: 'Orbitron'; font-weight: bold; text-align: center; min-width: 90px;">40%</div>
+                        <div>
+                            <h3 style="margin: 0 0 5px 0; color: var(--royal-blue); font-size: clamp(16px, 1.8vw, 22px);">KEFAHAMAN</h3>
+                            <p style="margin: 0; font-size: clamp(13px, 1.4vw, 16px); color: var(--text-dark); font-weight: 600;">
+                                Berdasarkan Ujian Penilaian Modul Pembelajaran sepanjang program
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 8px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px;">
+                        <div style="background: var(--cyber-cyan); color: white; padding: 15px; border-radius: 8px; font-size: clamp(20px, 2.5vw, 28px); font-family: 'Orbitron'; font-weight: bold; text-align: center; min-width: 90px;">10%</div>
+                        <div>
+                            <h3 style="margin: 0 0 5px 0; color: var(--royal-blue); font-size: clamp(16px, 1.8vw, 22px);">KOMITMEN</h3>
+                            <p style="margin: 0; font-size: clamp(13px, 1.4vw, 16px); color: var(--text-dark); font-weight: 600;">
+                                Penglibatan Dalam Aktiviti (5) &nbsp;&bull;&nbsp; Kerjasama Kumpulan (5)
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div id="dynamic-participant-slides" style="display: contents;"></div>
 
             <div class="slide">
@@ -580,7 +654,6 @@ class UI {
         </div>
 
         <div class="controls">
-            <!-- Butang Kembali PC -->
             <button class="btn desktop-btn-prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
             
             <div class="tracker-group">
@@ -588,10 +661,8 @@ class UI {
                 <div class="tracker clock-tracker" id="live-clock"><i class="fa-solid fa-clock"></i> 00:00:00</div>
             </div>
 
-            <!-- Butang Seterusnya PC -->
             <button class="btn desktop-btn-next" onclick="changeSlide(1)">SETERUSNYA <i class="fa-solid fa-chevron-right"></i></button>
 
-            <!-- Kumpulan Butang Khas Mobile -->
             <div class="mobile-btn-group" style="display: none;">
                 <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
                 <button class="btn" onclick="changeSlide(1)">SETERUSNYA <i class="fa-solid fa-chevron-right"></i></button>
@@ -652,7 +723,7 @@ class UI {
             let batch = db.slice(i, i + 3);
             let cardsHTML = batch.map(p => {
                 let statusClass = p.stat.includes("Lulus") ? "status-lulus" : "status-ulang";
-                let statusText = p.stat.includes("Lulus") ? "LULUS PTM" : "ULANG KEFAHAMAN";
+                let statusText = p.stat.includes("Lulus") ? "LULUS PTM" : "PERLU MENDUDUKI SEMULA UJIAN KEFAHAMAN";
 
                 return `
                 <div class="card">
@@ -709,7 +780,7 @@ class UI {
             if (currentIndex < 0) currentIndex = slides.length - 1;
             
             slides[currentIndex].classList.add('active');
-            slides[currentIndex].scrollTop = 0; // Kembalikan scroll ke atas untuk slide baru
+            slides[currentIndex].scrollTop = 0; 
             updateTracker();
         }
 
@@ -737,7 +808,5 @@ class UI {
         updateClock();
         updateTracker();
     </script>
-</body>
-</html>
 </body>
 </html>
