@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sistem Penilaian PTM KKDW 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght=600;700&family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* TEMA WARNA TERANG - ROYAL CYBER */
@@ -19,12 +19,7 @@
             --warn-orange: #ea580c;
         }
 
-        /* RESET ASAS */
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg-bright);
@@ -39,7 +34,7 @@
             user-select: none;
         }
 
-        /* LATAR BELAKANG ANIMASI C++ & GRID */
+        /* LATAR BELAKANG */
         .bg-grid {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -56,58 +51,33 @@
             100% { background-position: 100px 100px; }
         }
 
-        .bg-code {
-            position: absolute;
-            top: 2%; left: 2%;
-            font-family: 'Fira Code', monospace;
-            font-size: clamp(10px, 1vw, 14px);
-            color: rgba(10, 36, 99, 0.1);
-            white-space: pre;
-            z-index: -2;
-            line-height: 1.6;
-        }
-
-        /* PAPARAN UTAMA - KESERASIAN UNIVERSAL */
+        /* VIEWPORT UTAMA */
         #viewport {
-            width: 96vw;
-            height: 94dvh;
-            max-width: 1600px;
-            background: rgba(255, 255, 255, 0.85);
-            border: 4px solid var(--royal-blue);
-            box-shadow: 0 20px 50px rgba(10, 36, 99, 0.25), inset 0 0 20px rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
+            width: 100vw;
+            height: 100dvh;
+            background: rgba(255, 255, 255, 0.9);
             position: relative;
             display: flex;
             flex-direction: column;
-            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.3s ease;
         }
 
-        /* PROGRESS BAR */
         #progress-bar {
             position: absolute;
-            top: 0; left: 0;
-            height: 5px;
+            top: 0; left: 0; height: 6px;
             background: linear-gradient(90deg, var(--cyber-cyan), var(--royal-blue));
-            width: 0%;
-            z-index: 100;
+            width: 0%; z-index: 100;
             transition: width 0.4s cubic-bezier(0.1, 0.8, 0.25, 1);
-            box-shadow: 0 2px 10px rgba(0, 168, 204, 0.5);
         }
 
-        /* CYBER TICKER */
         .cyber-ticker {
-            background: linear-gradient(to right, #051642, var(--royal-blue), #051642);
+            background: var(--royal-blue);
             color: var(--cyber-cyan);
             padding: 8px 0;
             font-family: 'Fira Code', monospace;
-            font-size: clamp(11px, 1.2vw, 14px);
+            font-size: 13px;
             overflow: hidden;
             white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border-bottom: 2px solid rgba(0, 168, 204, 0.5);
-            margin-top: 5px;
             flex-shrink: 0;
         }
 
@@ -116,7 +86,6 @@
             padding-left: 100%;
             animation: marquee 25s linear infinite;
             font-weight: bold;
-            text-shadow: 0 0 5px rgba(0, 168, 204, 0.5);
         }
 
         @keyframes marquee {
@@ -124,387 +93,220 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* STRUKTUR SLAID (FLEXIBLE WRAPPER) */
+        /* STRUKTUR SLAID */
         #slides-wrapper {
-            flex: 1; 
-            min-height: 0; 
+            flex: 1;
+            min-height: 0;
             position: relative;
-            overflow: hidden;
         }
 
         .slide {
             position: absolute;
             inset: 0;
-            padding: clamp(15px, 3vh, 40px) clamp(15px, 4vw, 40px);
+            padding: 3vh 3vw;
             display: flex;
             flex-direction: column;
-            overflow-y: auto; 
-            -webkit-overflow-scrolling: touch; 
-            
+            overflow-y: auto;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(30px) scale(0.98);
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 1;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
         }
 
         .slide.active { 
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
             z-index: 10;
         }
 
-        .slide::-webkit-scrollbar { width: 6px; }
-        .slide::-webkit-scrollbar-track { background: transparent; }
-        .slide::-webkit-scrollbar-thumb { background: var(--cyber-cyan); border-radius: 10px; }
-
-        /* TIPOGRAFI DINAMIK */
+        /* TIPOGRAFI - SAIZ DIBESARKAN */
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(22px, 4vw, 55px);
+            font-size: clamp(26px, 4.5vw, 60px);
             color: var(--royal-blue);
-            margin-bottom: 5px;
             text-transform: uppercase;
-            line-height: 1.2;
-            text-shadow: 2px 2px 5px rgba(10, 36, 99, 0.2);
-        }
-        
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(16px, 2vw, 35px);
-            color: var(--royal-blue);
-            text-shadow: 1px 1px 3px rgba(10, 36, 99, 0.15);
         }
 
         .header-title {
             background: linear-gradient(135deg, var(--royal-blue), #1e3c87);
             color: white;
-            font-size: clamp(16px, 2vw, 30px);
-            padding: 12px 20px;
-            border-radius: 10px;
+            font-size: clamp(18px, 2.2vw, 32px);
+            padding: 15px 25px;
+            border-radius: 12px;
             margin-bottom: 20px;
             font-family: 'Orbitron', sans-serif;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(10,36,99,0.3), inset 0 2px 5px rgba(255,255,255,0.2);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(10,36,99,0.2);
             flex-shrink: 0;
         }
 
-        /* SISTEM GRID AUTO RESPONSIVE */
+        /* GRID PESERTA */
         .grid-3 {
             display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(3, 1fr); 
-            padding-bottom: 20px;
+            gap: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            padding-bottom: 30px;
         }
 
-        /* KAD PESERTA DEPTH EFFECT */
+        /* KAD PESERTA - SAIZ FONT DIBESARKAN */
         .card {
             background: var(--white-panel);
             border: 3px solid var(--royal-blue);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(10, 36, 99, 0.12), inset 0 -4px 0 rgba(0, 168, 204, 0.15);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(10, 36, 99, 0.1);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--cyber-cyan);
-            box-shadow: 0 15px 30px rgba(0, 168, 204, 0.25), inset 0 -4px 0 rgba(0, 168, 204, 0.4);
-        }
-
-        /* GAMBAR PESERTA DENGAN ASPECT RATIO */
         .img-box {
             width: 100%;
-            aspect-ratio: 4/3; 
+            aspect-ratio: 4/3;
             background: #cbd5e1; 
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             border: 3px solid var(--cyber-cyan);
             margin-bottom: 15px;
             position: relative;
-            box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .img-box img {
-            width: 100%; height: 100%;
-            object-fit: contain; 
-            transition: transform 0.5s ease;
-        }
-        
-        .card:hover .img-box img { transform: scale(1.05); }
+        .img-box img { width: 100%; height: 100%; object-fit: contain; }
 
         .tag-id {
-            position: absolute;
-            bottom: 0; right: 0;
-            background: var(--royal-blue);
-            color: white;
+            position: absolute; bottom: 0; right: 0;
+            background: var(--royal-blue); color: white;
             font-family: 'Fira Code', monospace;
-            font-size: clamp(14px, 1.5vw, 20px);
-            padding: 4px 12px;
-            border-top-left-radius: 12px;
-            font-weight: bold;
-            box-shadow: -2px -2px 10px rgba(0,0,0,0.2);
+            font-size: 22px; padding: 5px 15px;
+            border-top-left-radius: 12px; font-weight: bold;
         }
 
-        /* MAKLUMAT DIRI */
         .info-name {
-            font-size: clamp(15px, 1.5vw, 20px);
+            font-size: clamp(18px, 1.8vw, 24px); /* Besarkan font nama */
             font-weight: 900;
             color: var(--royal-blue);
             line-height: 1.2;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            min-height: 2.4em;
         }
 
         .info-job {
-            font-size: clamp(12px, 1vw, 15px);
+            font-size: clamp(14px, 1.2vw, 18px); /* Besarkan font jawatan */
             color: #475569;
             font-weight: 700;
             margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 2px dashed #cbd5e1;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 5px;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .dept-badge {
-            background: linear-gradient(135deg, var(--cyber-cyan), #007a99);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: clamp(10px, 0.9vw, 12px);
-            white-space: nowrap;
+            background: var(--cyber-cyan); color: white;
+            padding: 4px 10px; border-radius: 6px;
+            font-size: 14px;
         }
 
-        /* MARKAH & STATUS */
         .marks-container {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            background: #f1f5f9;
+            padding: 15px; border-radius: 12px;
+            display: flex; flex-direction: column; gap: 8px;
         }
 
         .mark-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: clamp(12px, 1vw, 16px);
-            font-weight: 700;
-            color: var(--royal-blue);
+            display: flex; justify-content: space-between;
+            font-size: clamp(15px, 1.2vw, 19px); /* Besarkan font markah */
+            font-weight: 700; color: var(--royal-blue);
             font-family: 'Fira Code', monospace;
         }
 
         .mark-row.total {
             border-top: 2px solid var(--royal-blue);
-            padding-top: 6px;
-            font-size: clamp(14px, 1.2vw, 18px);
-            color: var(--text-dark);
-            font-weight: 900;
+            padding-top: 8px;
+            font-size: clamp(18px, 1.4vw, 22px);
+            color: var(--text-dark); font-weight: 900;
         }
 
         .status-box {
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(12px, 1.1vw, 16px);
-            font-weight: 900;
-            padding: 8px;
-            border-radius: 8px;
-            margin-top: 15px;
-            color: white;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-align: center; font-family: 'Orbitron', sans-serif;
+            font-size: clamp(14px, 1.2vw, 18px);
+            font-weight: 900; padding: 10px; border-radius: 10px;
+            margin-top: 15px; color: white; text-transform: uppercase;
         }
         
-        .status-lulus { background: linear-gradient(to bottom, #10b981, var(--pass-green)); box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3); }
-        .status-ulang { background: linear-gradient(to bottom, #f97316, var(--warn-orange)); box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3); }
+        .status-lulus { background: var(--pass-green); box-shadow: 0 5px 15px rgba(5,150,105,0.3); }
+        .status-ulang { background: var(--warn-orange); box-shadow: 0 5px 15px rgba(234,88,12,0.3); }
 
-        /* BUTANG KAWALAN BAWAH KESERASIAN PENUH */
+        /* KAWALAN BAWAH */
         .controls {
-            flex-shrink: 0; 
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 3vw;
-            border-top: 3px solid var(--royal-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 20;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            flex-shrink: 0; background: white;
+            padding: 15px 3vw; border-top: 3px solid var(--royal-blue);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
         }
 
-        .tracker-group {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
+        .tracker-group { display: flex; gap: 10px; align-items: center; }
 
         .tracker {
-            font-family: 'Fira Code', monospace;
-            font-size: clamp(12px, 1vw, 16px);
-            color: var(--royal-blue);
-            font-weight: bold;
-            background: #f1f5f9;
-            padding: 8px 15px;
-            border-radius: 10px;
-            border: 2px solid var(--royal-blue);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .clock-tracker {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: var(--cyber-cyan);
-            border-color: var(--cyber-cyan);
+            font-family: 'Fira Code', monospace; font-size: 15px;
+            color: var(--royal-blue); font-weight: bold;
+            background: #f1f5f9; padding: 8px 15px;
+            border-radius: 8px; border: 2px solid var(--royal-blue);
         }
 
         .btn {
-            background: linear-gradient(to bottom, #1a3a8a, var(--royal-blue));
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(12px, 1vw, 16px);
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(10, 36, 99, 0.3);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            white-space: nowrap;
+            background: var(--royal-blue); color: white;
+            font-family: 'Orbitron', sans-serif; font-size: 14px;
+            padding: 12px 25px; border: none; border-radius: 50px;
+            cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px;
         }
 
-        .btn:hover { background: linear-gradient(to bottom, #00c6f0, var(--cyber-cyan)); transform: translateY(-2px); }
-        .btn:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(10, 36, 99, 0.3); }
+        .btn:hover { background: var(--cyber-cyan); transform: translateY(-2px); }
 
-        /* --- MEDIA QUERIES UNTUK RESPONSIVE --- */
-
-        @media (max-width: 1024px) {
-            .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 15px; } 
-            .img-box { aspect-ratio: 16/9; } 
-            #viewport { width: 98vw; height: 96dvh; }
+        .btn-fullscreen {
+            background: #0f172a;
+            border: 2px solid var(--cyber-cyan);
         }
 
+        /* RESPONSIVE TABLET & PHONE */
+        @media (max-width: 1024px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
-            body { background: white; } 
-            
-            #viewport { 
-                width: 100vw; 
-                height: 100dvh; 
-                border: none; 
-                border-radius: 0; 
-                box-shadow: none;
-            }
-
-            .grid-3 { grid-template-columns: 1fr; } 
-            .img-box { aspect-ratio: auto; height: 180px; } 
-            .slide { padding: 15px 15px 30px 15px; } 
-
-            .controls {
-                flex-direction: column; 
-                padding: 12px;
-                gap: 12px;
-            }
-
-            .tracker-group {
-                width: 100%;
-                justify-content: space-between;
-                gap: 10px;
-                order: 1; 
-            }
-
-            .tracker {
-                flex: 1; 
-                justify-content: center;
-                padding: 8px 5px;
-                font-size: 13px;
-            }
-
-            .mobile-btn-group {
-                display: flex;
-                width: 100%;
-                gap: 10px;
-                order: 2; 
-            }
-
-            .btn {
-                flex: 1; 
-                padding: 12px;
-                font-size: 13px;
-            }
-
-            .desktop-btn-prev, .desktop-btn-next { display: none; }
-            .mobile-btn-group { display: flex !important; }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-btn-group { display: none !important; }
-        }
-
-        @media (max-width: 380px) {
-            .tracker { font-size: 11px; padding: 6px; }
-            .btn { font-size: 11px; padding: 10px 5px; }
-            .img-box { height: 150px; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; gap: 10px; }
+            .mobile-btn-group { display: flex; width: 100%; gap: 10px; }
+            .mobile-btn-group .btn { flex: 1; }
+            .desktop-btns { display: none; }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-grid"></div>
-    <div class="bg-code">
-// UNIVERSAL COMPATIBILITY ENGINE LOADED
-#include &lt;ResponsiveCore.h&gt;
-class UI {
-  void Init() {
-    Platform::SetTarget(ALL_DEVICES);
-    Display::EnableFluidGrid();
-    Display::OptimizeViewport("100dvh");
-  }
-};
-    </div>
 
     <div id="viewport">
         <div id="progress-bar"></div>
 
         <div class="cyber-ticker">
             <div class="ticker-content">
-                ⚡ [STATUS KESELURUHAN SYSTEM: ONLINE] &nbsp;&nbsp;&bull;&nbsp;&nbsp; 🖥️ [ENGINE: FULL_UNIVERSAL_RESPONSIVE_V5] &nbsp;&nbsp;&bull;&nbsp;&nbsp; 📊 [DATABASE STATUS: LOCALHOST_CONNECTED] &nbsp;&nbsp;&bull;&nbsp;&nbsp; PROGRAM TRANSFORMASI MINDA (PTM) KEMENTERIAN KEMAJUAN DESA DAN WILAYAH TAHUN 2026
+                ⚡ [STATUS: ONLINE] &bull; 🖥️ [ENGINE: PRESENTATION_PRO_V6] &bull; 🚀 JUMLAH REKOD: 40 &bull; PROGRAM TRANSFORMASI MINDA (PTM) KKDW 2026
             </div>
         </div>
 
         <div id="slides-wrapper">
             
             <div class="slide active">
-                <div style="margin: auto; text-align: center; background: white; padding: 5vh 4vw; border-radius: 20px; border: 4px solid var(--royal-blue); box-shadow: 0 15px 40px rgba(0,0,0,0.1); width: 100%; max-width: 800px;">
-                    <p style="font-size: clamp(14px, 1.8vw, 24px); color: var(--cyber-cyan); font-weight: bold; margin-bottom: 2vh;">BILANGAN 2 TAHUN 2026</p>
+                <div style="margin: auto; text-align: center; background: white; padding: 6vh 5vw; border-radius: 25px; border: 5px solid var(--royal-blue); box-shadow: 0 20px 50px rgba(0,0,0,0.1); width: 90%; max-width: 900px;">
+                    <p style="font-size: 24px; color: var(--cyber-cyan); font-weight: bold; margin-bottom: 15px;">BILANGAN 2 TAHUN 2026</p>
                     <h1>MESYUARAT PANEL PENGURUSAN</h1>
                     <h2>PROGRAM TRANSFORMASI MINDA KKDW</h2>
-                    
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 4vh;">
-                        <div style="background: var(--bg-bright); padding: 15px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 130px;">
-                            <i class="fa-solid fa-calendar-days" style="font-size: clamp(24px, 3vw, 35px); color: var(--royal-blue); margin-bottom: 10px;"></i>
-                            <div style="font-size: clamp(13px, 1.4vw, 20px); font-weight: bold;">18 JUN 2026</div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px;">
+                        <div style="background: #f1f5f9; padding: 20px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 150px;">
+                            <i class="fa-solid fa-calendar-days" style="font-size: 30px; color: var(--royal-blue); margin-bottom: 10px;"></i>
+                            <div style="font-weight: bold; font-size: 18px;">18 JUN 2026</div>
                         </div>
-                        <div style="background: var(--bg-bright); padding: 15px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 130px;">
-                            <i class="fa-solid fa-clock" style="font-size: clamp(24px, 3vw, 35px); color: var(--royal-blue); margin-bottom: 10px;"></i>
-                            <div style="font-size: clamp(13px, 1.4vw, 20px); font-weight: bold;">3.00 PM</div>
-                        </div>
-                        <div style="background: var(--bg-bright); padding: 15px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 130px;">
-                            <i class="fa-solid fa-location-crosshairs" style="font-size: clamp(24px, 3vw, 35px); color: var(--royal-blue); margin-bottom: 10px;"></i>
-                            <div style="font-size: clamp(13px, 1.4vw, 20px); font-weight: bold;">BILIK ASTER</div>
+                        <div style="background: #f1f5f9; padding: 20px; border-radius: 15px; border-bottom: 5px solid var(--royal-blue); flex: 1; min-width: 150px;">
+                            <i class="fa-solid fa-clock" style="font-size: 30px; color: var(--royal-blue); margin-bottom: 10px;"></i>
+                            <div style="font-weight: bold; font-size: 18px;">3.00 PM</div>
                         </div>
                     </div>
                 </div>
@@ -512,160 +314,112 @@ class UI {
 
             <div class="slide">
                 <div class="header-title">AGENDA MESYUARAT UTAMA</div>
-                <div style="display: flex; flex-direction: column; gap: 15px; margin: auto; width: 100%; max-width: 900px;">
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 15px; font-size: clamp(14px, 2vw, 24px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(18px, 3vw, 30px);">01</span> Perutusan Pengerusi
+                <div style="display: flex; flex-direction: column; gap: 15px; margin: auto; width: 90%; max-width: 900px;">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: 24px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 20px; font-size: 30px;">01</span> Perutusan Pengerusi
                     </div>
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 15px; font-size: clamp(14px, 2vw, 24px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(18px, 3vw, 30px);">02</span> Pengesahan Minit Mesyuarat PTM Bil. 1/2026
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: 24px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 20px; font-size: 30px;">02</span> Pengesahan Minit Mesyuarat
                     </div>
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 15px; font-size: clamp(14px, 2vw, 24px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(18px, 3vw, 30px);">03</span> Pembentangan Laporan Penilaian Peserta
-                    </div>
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 15px; font-size: clamp(14px, 2vw, 24px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(18px, 3vw, 30px);">04</span> Ulasan Fasilitator & Penutup
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: 24px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 20px; font-size: 30px;">03</span> Laporan Penilaian Peserta
                     </div>
                 </div>
             </div>
 
             <div class="slide">
-                <div class="header-title" style="background: linear-gradient(135deg, var(--royal-blue), #1e3c87);">PERUTUSAN PENGERUSI</div>
-                <div style="margin: auto; width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px;">
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-radius: 10px; display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
-                        <div style="flex-shrink: 0; text-align: center; width: 100px;">
-                            <i class="fa-solid fa-microphone-lines" style="font-size: 60px; color: var(--cyber-cyan);"></i>
-                        </div>
-                        <div style="flex: 1; min-width: 250px;">
-                            <p style="font-size: clamp(16px, 1.8vw, 22px); line-height: 1.6; color: var(--text-dark); margin: 0; font-weight: 600;">
-                                Ucapan alu-aluan kepada hadirin dan memaklumkan keperluan <span style="color: var(--royal-blue); font-weight: 900;">Panel PTM</span> untuk menyemak <span style="color: var(--cyber-cyan); font-weight: 900;">laporan kehadiran</span> dan <span style="color: var(--cyber-cyan); font-weight: 900;">laporan penilaian</span> sepanjang program bagi setiap pegawai yang menghadiri PTM.
-                            </p>
-                        </div>
+                <div class="header-title">PERUTUSAN PENGERUSI</div>
+                <div style="margin: auto; width: 90%; max-width: 900px;">
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 40px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 30px;">
+                        <i class="fa-solid fa-microphone-lines" style="font-size: 80px; color: var(--cyber-cyan);"></i>
+                        <p style="font-size: 28px; line-height: 1.6; font-weight: 600;">
+                            Ucapan alu-aluan kepada hadirin dan memaklumkan keperluan <span style="color: var(--royal-blue); font-weight: 900;">Panel PTM</span> untuk menyemak laporan kehadiran dan laporan penilaian sepanjang program bagi setiap pegawai.
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div class="slide">
-                <div class="header-title" style="background: linear-gradient(135deg, #0f172a, var(--royal-blue));">PROFIL & DEMOGRAFI PESERTA PTM 2026</div>
-                <div style="margin: auto; width: 100%; max-width: 1000px;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
-                        
-                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--pass-green); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size: clamp(40px, 5vw, 60px); font-weight: 900; color: var(--pass-green); font-family: 'Orbitron';">40</div>
-                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--text-dark); margin-top: 10px; text-transform: uppercase;">Jumlah Peserta</div>
-                        </div>
-
-                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">25</div>
-                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">JAKOA</div>
-                        </div>
-
-                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">9</div>
-                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">KKDW</div>
-                        </div>
-
-                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">3</div>
-                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">KEMAS</div>
-                        </div>
-
-                        <div style="background: white; padding: 25px 15px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size: clamp(35px, 4vw, 50px); font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">3</div>
-                            <div style="font-size: clamp(14px, 1.5vw, 18px); font-weight: bold; color: var(--royal-blue); margin-top: 10px;">INFRA</div>
-                        </div>
-
+                <div class="header-title">PROFIL & DEMOGRAFI PESERTA</div>
+                <div style="margin: auto; width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--pass-green); box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                        <div style="font-size: 60px; font-weight: 900; color: var(--pass-green); font-family: 'Orbitron';">40</div>
+                        <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">JUMLAH PESERTA</div>
+                    </div>
+                    <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                        <div style="font-size: 50px; font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">25</div>
+                        <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">JAKOA</div>
+                    </div>
+                    <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--royal-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                        <div style="font-size: 50px; font-weight: 900; color: var(--cyber-cyan); font-family: 'Orbitron';">9</div>
+                        <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">KKDW</div>
                     </div>
                 </div>
             </div>
 
             <div class="slide">
-                <div class="header-title" style="background: linear-gradient(135deg, var(--royal-blue), #007a99);">KRITERIA PENILAIAN PTM</div>
-                <div style="margin: auto; width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 15px;">
-                    
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 8px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px;">
-                        <div style="background: var(--cyber-cyan); color: white; padding: 15px; border-radius: 8px; font-size: clamp(20px, 2.5vw, 28px); font-family: 'Orbitron'; font-weight: bold; text-align: center; min-width: 90px;">50%</div>
+                <div class="header-title">KRITERIA PENILAIAN UTAMA</div>
+                <div style="margin: auto; width: 95%; max-width: 1000px; display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 15px; border-left: 10px solid var(--royal-blue); display: flex; align-items: center; gap: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                        <div style="background: var(--cyber-cyan); color: white; padding: 20px; border-radius: 12px; font-size: 32px; font-family: 'Orbitron'; font-weight: 900;">50%</div>
                         <div>
-                            <h3 style="margin: 0 0 5px 0; color: var(--royal-blue); font-size: clamp(16px, 1.8vw, 22px);">DISIPLIN DAN PERSONALITI</h3>
-                            <p style="margin: 0; font-size: clamp(13px, 1.4vw, 16px); color: var(--text-dark); font-weight: 600;">
-                                Kehadiran (10) &nbsp;&bull;&nbsp; Tingkah Laku (10) &nbsp;&bull;&nbsp; Ketepatan Masa (10) &nbsp;&bull;&nbsp; Etika Berpakaian (10) &nbsp;&bull;&nbsp; Komunikasi (10)
-                            </p>
+                            <h3 style="font-size: 24px; color: var(--royal-blue);">DISIPLIN DAN PERSONALITI</h3>
+                            <p style="font-size: 18px; font-weight: 600;">Kehadiran, Tingkah Laku, Ketepatan Masa, Etika Pakaian, Komunikasi.</p>
                         </div>
                     </div>
-
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 8px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px;">
-                        <div style="background: var(--cyber-cyan); color: white; padding: 15px; border-radius: 8px; font-size: clamp(20px, 2.5vw, 28px); font-family: 'Orbitron'; font-weight: bold; text-align: center; min-width: 90px;">40%</div>
+                    <div style="background: white; padding: 25px; border-radius: 15px; border-left: 10px solid var(--royal-blue); display: flex; align-items: center; gap: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                        <div style="background: var(--cyber-cyan); color: white; padding: 20px; border-radius: 12px; font-size: 32px; font-family: 'Orbitron'; font-weight: 900;">40%</div>
                         <div>
-                            <h3 style="margin: 0 0 5px 0; color: var(--royal-blue); font-size: clamp(16px, 1.8vw, 22px);">KEFAHAMAN</h3>
-                            <p style="margin: 0; font-size: clamp(13px, 1.4vw, 16px); color: var(--text-dark); font-weight: 600;">
-                                Berdasarkan Ujian Penilaian Modul Pembelajaran sepanjang program
-                            </p>
+                            <h3 style="font-size: 24px; color: var(--royal-blue);">KEFAHAMAN</h3>
+                            <p style="font-size: 18px; font-weight: 600;">Ujian Penilaian Modul Pembelajaran.</p>
                         </div>
                     </div>
-
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 8px solid var(--royal-blue); box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px;">
-                        <div style="background: var(--cyber-cyan); color: white; padding: 15px; border-radius: 8px; font-size: clamp(20px, 2.5vw, 28px); font-family: 'Orbitron'; font-weight: bold; text-align: center; min-width: 90px;">10%</div>
-                        <div>
-                            <h3 style="margin: 0 0 5px 0; color: var(--royal-blue); font-size: clamp(16px, 1.8vw, 22px);">KOMITMEN</h3>
-                            <p style="margin: 0; font-size: clamp(13px, 1.4vw, 16px); color: var(--text-dark); font-weight: 600;">
-                                Penglibatan Dalam Aktiviti (5) &nbsp;&bull;&nbsp; Kerjasama Kumpulan (5)
-                            </p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
             <div id="dynamic-participant-slides" style="display: contents;"></div>
 
             <div class="slide">
-                <div class="header-title" style="background: linear-gradient(135deg, var(--cyber-cyan), #007a99);">ULASAN FASILITATOR (BAKAT BAHARU)</div>
+                <div class="header-title" style="background: #00a8cc;">ULASAN FASILITATOR (BAKAT BAHARU)</div>
                 <div style="margin: auto; width: 100%; display: flex; flex-direction: column; gap: 15px; max-width: 1000px;">
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-radius: 8px;">
-                        <h3 style="margin: 0 0 10px 0; color: var(--royal-blue); font-size: clamp(15px, 1.8vw, 22px); font-family: 'Orbitron';">03 - NUR AIN NADIAH BINTI MOHD KHUDARI</h3>
-                        <p style="margin: 0; font-size: clamp(13px, 1.3vw, 16px); line-height: 1.5;">
-                            <span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Pengacara Majlis.</span> Bijak bermain dengan intonasi suara supaya penyampaian tidak mendatar (monotonous) and berjaya mengawal kelajuan bercakap dengan tenang dan teratur.
-                        </p>
-                    </div>
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-radius: 8px;">
-                        <h3 style="margin: 0 0 10px 0; color: var(--royal-blue); font-size: clamp(15px, 1.8vw, 22px); font-family: 'Orbitron';">14 - RAJIB BIN HUSSIN</h3>
-                        <p style="margin: 0; font-size: clamp(13px, 1.3vw, 16px); line-height: 1.5;">
-                            <span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Pengacara Majlis.</span> Mempunyai sebutan (diction) yang terang dan projection suara yang bertenaga dan Memiliki stage presence yang kuat.
-                        </p>
-                    </div>
-                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-radius: 8px;">
-                        <h3 style="margin: 0 0 10px 0; color: var(--royal-blue); font-size: clamp(15px, 1.8vw, 22px); font-family: 'Orbitron';">15 - NURUL AIN BINTI ZAKARIA</h3>
-                        <p style="margin: 0; font-size: clamp(13px, 1.3vw, 16px); line-height: 1.5;">
-                            <span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Berlakon.</span> Penjiwaan Watak yang Mendalam: Berjaya menyelami watak dengan ikhlas, bukan sekadar menghafal dialog.
-                        </p>
+                    <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 25px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--royal-blue); font-size: 22px; font-family: 'Orbitron'; margin-bottom: 10px;">03 - NUR AIN NADIAH</h3>
+                        <p style="font-size: 18px; line-height: 1.5;"><span style="color: var(--cyber-cyan); font-weight: bold;">Bakat Pengacara Majlis.</span> Bijak bermain dengan intonasi suara dan tenang.</p>
                     </div>
                 </div>
             </div>
 
             <div class="slide">
-                <div style="margin: auto; text-align: center; background: white; padding: 5vh 5vw; border-radius: 20px; border: 5px solid var(--pass-green); box-shadow: 0 20px 50px rgba(5, 150, 105, 0.15); width: 100%; max-width: 800px;">
-                    <i class="fa-solid fa-shield-check" style="font-size: clamp(50px, 8vw, 90px); color: var(--pass-green); margin-bottom: 20px;"></i>
-                    <h1 style="font-size: clamp(28px, 5vw, 60px); color: var(--pass-green);">SISTEM SELESAI</h1>
-                    <p style="font-size: clamp(14px, 2vw, 24px); font-weight: bold; color: var(--royal-blue); margin-top: 15px;">Sesi Pembentangan Panel Pengurusan Telah Berakhir.</p>
-                    <div style="height: 4px; background: linear-gradient(90deg, transparent, var(--royal-blue), transparent); width: 100px; margin: 20px auto;"></div>
-                    <h2 style="font-size: clamp(18px, 3vw, 35px); color: var(--royal-blue);">TERIMA KASIH</h2>
+                <div style="margin: auto; text-align: center; background: white; padding: 8vh 5vw; border-radius: 30px; border: 6px solid var(--pass-green); box-shadow: 0 30px 60px rgba(0,0,0,0.15); width: 90%; max-width: 800px;">
+                    <i class="fa-solid fa-circle-check" style="font-size: 100px; color: var(--pass-green); margin-bottom: 20px;"></i>
+                    <h1 style="font-size: 70px; color: var(--pass-green);">SISTEM SELESAI</h1>
+                    <p style="font-size: 28px; font-weight: bold; color: var(--royal-blue); margin-top: 20px;">Sesi Pembentangan Panel Pengurusan Telah Berakhir.</p>
+                    <h2 style="font-size: 40px; margin-top: 30px;">TERIMA KASIH</h2>
                 </div>
             </div>
 
         </div>
 
         <div class="controls">
-            <button class="btn desktop-btn-prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
+            <div class="desktop-btns">
+                <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
+            </div>
             
             <div class="tracker-group">
-                <div class="tracker" id="slide-tracker">SLIDE: 1 / 18</div>
-                <div class="tracker clock-tracker" id="live-clock"><i class="fa-solid fa-clock"></i> 00:00:00</div>
+                <button class="btn btn-fullscreen" onclick="toggleFullScreen()" id="fs-btn">
+                    <i class="fa-solid fa-expand"></i> FULL SCREEN
+                </button>
+                <div class="tracker" id="slide-tracker">SLIDE: 1 / 21</div>
+                <div class="tracker" id="live-clock">00:00:00</div>
             </div>
 
-            <button class="btn desktop-btn-next" onclick="changeSlide(1)">SETERUSNYA <i class="fa-solid fa-chevron-right"></i></button>
+            <div class="desktop-btns">
+                <button class="btn" onclick="changeSlide(1)">SETERUSNYA <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
 
             <div class="mobile-btn-group" style="display: none;">
-                <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> KEMBALI</button>
-                <button class="btn" onclick="changeSlide(1)">SETERUSNYA <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="btn" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
     </div>
@@ -686,86 +440,60 @@ class UI {
             { id: "012", name: "CHE SITI NADIAH BINTI CHE ROSDI", pos: "PEM. KHIDMAT AM H1", dept: "KKDW", dis: "49.74", kef: "30.00", kom: "10.00", jum: "89.74", stat: "Lulus PTM" },
             { id: "013", name: "MUHAMMAD HARITH HAIKAL", pos: "JURUTEKNIK FT1", dept: "KEMAS", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
             { id: "014", name: "RAJIB BIN HUSSIN", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "KEMAS", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
-            { id: "015", name: "NURUL AIN BINTI ZAKARIA", pos: "PENOLONG PEGAWAI PEMBANGUNAN MASYARAKAT S5", dept: "KEMAS", dis: "50.00", kef: "27.00", kom: "10.00", jum: "87.00", stat: "Ulang Kefahaman" },
-            { id: "016", name: "MUHAMMAD NAZIRUL AMINI BIN ABDUL LAHAM", pos: "JURUTEKNIK FT1", dept: "JAKOA", dis: "50.00", kef: "27.00", kom: "9.34", jum: "86.34", stat: "Ulang Kefahaman" },
+            { id: "015", name: "NURUL AIN BINTI ZAKARIA", pos: "PENOLONG PEGAWAI S5", dept: "KEMAS", dis: "50.00", kef: "27.00", kom: "10.00", jum: "87.00", stat: "Ulang Kefahaman" },
+            { id: "016", name: "MUHAMMAD NAZIRUL AMINI", pos: "JURUTEKNIK FT1", dept: "JAKOA", dis: "50.00", kef: "27.00", kom: "9.34", jum: "86.34", stat: "Ulang Kefahaman" },
             { id: "017", name: "NOR ZUBAIDAH BINTI CHE HUSAIN", pos: "PEMBANTU TADBIR W1", dept: "JAKOA", dis: "50.00", kef: "32.00", kom: "9.87", jum: "91.87", stat: "Lulus PTM" },
             { id: "018", name: "NURAISYAH NAFISAH BINTI ABDULLAH", pos: "PEM. KHIDMAT AM H1", dept: "JAKOA", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
-            { id: "019", name: "FAYYADH ISKANDAR BIN ANIZAL @ JEFRI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "50.00", kef: "30.00", kom: "9.87", jum: "89.87", stat: "Lulus PTM" },
-            { id: "020", name: "MUHAMMAD IRZHAR BIN MASRI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "50.00", kef: "37.00", kom: "9.87", jum: "96.87", stat: "Lulus PTM" },
-            { id: "021", name: "MOHAMMED AMERUL ZAKI BIN MOHD ZAIDI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "9.74", jum: "90.48", stat: "Lulus PTM" },
-            { id: "022", name: "MOHAMMAD FAKRUR ARRADZI BIN LOKMAN", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "48.68", kef: "34.00", kom: "9.08", jum: "91.76", stat: "Lulus PTM" },
-            { id: "023", name: "MUHAMMAD HAZIQ BIN MOHD JOHARI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
-            { id: "024", name: "MUHAMMAD HAFIZUDDIN BIN ISMAIL", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
-            { id: "025", name: "MUHAMMAD AFIF BIN SAZALLY", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "34.00", kom: "10.00", jum: "93.74", stat: "Lulus PTM" },
-            { id: "026", name: "MOHAMAD ARIF HUSAINI BIN SHAMSUL BAHARIN", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "50.00", kef: "34.00", kom: "10.00", jum: "94.00", stat: "Lulus PTM" },
-            { id: "027", name: "UTHMAN EL MUHAMMADI BIN ABD. GHANI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "50.00", kef: "31.00", kom: "10.00", jum: "91.00", stat: "Lulus PTM" },
-            { id: "028", name: "MOHAMAD HAFIS BIN ALI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "50.00", kef: "30.00", kom: "10.00", jum: "90.00", stat: "Lulus PTM" },
-            { id: "029", name: "MUHAMMAD FAUZI BIN ZAIN SALLEH", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "32.00", kom: "10.00", jum: "91.74", stat: "Lulus PTM" },
-            { id: "030", name: "MOHAMAD NOR ASYRAFF BIN HASSAN", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "30.00", kom: "10.00", jum: "89.74", stat: "Lulus PTM" },
-            { id: "031", name: "BAH KIA A/L AHMAD", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "25.00", kom: "10.00", jum: "84.74", stat: "Ulang Kefahaman" },
-            { id: "032", name: "MUHAMMAD SHAFIZAN BIN MOHD NASIR", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
-            { id: "033", name: "SHAHRUL ASRI BIN ASMI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "27.00", kom: "10.00", jum: "86.74", stat: "Ulang Kefahaman" },
-            { id: "034", name: "MUHAMAD IRSHAD BIN AMRAN", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
-            { id: "035", name: "NORHAZWANI BINTI MOHD YAACOB", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "33.00", kom: "10.00", jum: "92.74", stat: "Lulus PTM" },
-            { id: "036", name: "NORHAIZATUL FAZLEEN BINTI AZMI", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
-            { id: "037", name: "HALORACIA MAZLIN BINTI OMAR", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "29.00", kom: "10.00", jum: "88.74", stat: "Ulang Kefahaman" },
-            { id: "038", name: "AQILAH HAZIRAH BINTI MAHAMAD HANID", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.47", kef: "28.00", kom: "10.00", jum: "87.47", stat: "Ulang Kefahaman" },
-            { id: "039", name: "WAH ADJA A/P BAH LAM", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "36.00", kom: "10.00", jum: "95.74", stat: "Lulus PTM" },
-            { id: "040", name: "SHAHERAN BINTI FAIZAL", pos: "PEMBANTU PEMBANGUNAN MASYARAKAT S1", dept: "JAKOA", dis: "49.74", kef: "22.00", kom: "10.00", jum: "81.74", stat: "Ulang Kefahaman" }
+            { id: "019", name: "FAYYADH ISKANDAR BIN ANIZAL", pos: "PEMBANTU S1", dept: "JAKOA", dis: "50.00", kef: "30.00", kom: "9.87", jum: "89.87", stat: "Lulus PTM" },
+            { id: "020", name: "MUHAMMAD IRZHAR BIN MASRI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "50.00", kef: "37.00", kom: "9.87", jum: "96.87", stat: "Lulus PTM" },
+            { id: "021", name: "MOHAMMED AMERUL ZAKI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "9.74", jum: "90.48", stat: "Lulus PTM" },
+            { id: "022", name: "MOHAMMAD FAKRUR ARRADZI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "48.68", kef: "34.00", kom: "9.08", jum: "91.76", stat: "Lulus PTM" },
+            { id: "023", name: "MUHAMMAD HAZIQ BIN MOHD JOHARI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
+            { id: "024", name: "MUHAMMAD HAFIZUDDIN BIN ISMAIL", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
+            { id: "025", name: "MUHAMMAD AFIF BIN SAZALLY", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "34.00", kom: "10.00", jum: "93.74", stat: "Lulus PTM" },
+            { id: "026", name: "MOHAMAD ARIF HUSAINI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "50.00", kef: "34.00", kom: "10.00", jum: "94.00", stat: "Lulus PTM" },
+            { id: "027", name: "UTHMAN EL MUHAMMADI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "50.00", kef: "31.00", kom: "10.00", jum: "91.00", stat: "Lulus PTM" },
+            { id: "028", name: "MOHAMAD HAFIS BIN ALI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "50.00", kef: "30.00", kom: "10.00", jum: "90.00", stat: "Lulus PTM" },
+            { id: "029", name: "MUHAMMAD FAUZI BIN ZAIN SALLEH", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "32.00", kom: "10.00", jum: "91.74", stat: "Lulus PTM" },
+            { id: "030", name: "MOHAMAD NOR ASYRAFF BIN HASSAN", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "30.00", kom: "10.00", jum: "89.74", stat: "Lulus PTM" },
+            { id: "031", name: "BAH KIA A/L AHMAD", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "25.00", kom: "10.00", jum: "84.74", stat: "Ulang Kefahaman" },
+            { id: "032", name: "MUHAMMAD SHAFIZAN BIN MOHD NASIR", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
+            { id: "033", name: "SHAHRUL ASRI BIN ASMI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "27.00", kom: "10.00", jum: "86.74", stat: "Ulang Kefahaman" },
+            { id: "034", name: "MUHAMAD IRSHAD BIN AMRAN", pos: "PEMBANTU S1", dept: "JAKOA", dis: "50.00", kef: "32.00", kom: "10.00", jum: "92.00", stat: "Lulus PTM" },
+            { id: "035", name: "NORHAZWANI BINTI MOHD YAACOB", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "33.00", kom: "10.00", jum: "92.74", stat: "Lulus PTM" },
+            { id: "036", name: "NORHAIZATUL FAZLEEN BINTI AZMI", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "31.00", kom: "10.00", jum: "90.74", stat: "Lulus PTM" },
+            { id: "037", name: "HALORACIA MAZLIN BINTI OMAR", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "29.00", kom: "10.00", jum: "88.74", stat: "Ulang Kefahaman" },
+            { id: "038", name: "AQILAH HAZIRAH BINTI MAHAMAD HANID", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.47", kef: "28.00", kom: "10.00", jum: "87.47", stat: "Ulang Kefahaman" },
+            { id: "039", name: "WAH ADJA A/P BAH LAM", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "36.00", kom: "10.00", jum: "95.74", stat: "Lulus PTM" },
+            { id: "040", name: "SHAHERAN BINTI FAIZAL", pos: "PEMBANTU S1", dept: "JAKOA", dis: "49.74", kef: "22.00", kom: "10.00", jum: "81.74", stat: "Ulang Kefahaman" }
         ];
 
         const container = document.getElementById('dynamic-participant-slides');
-        
         for (let i = 0; i < db.length; i += 3) {
             const slideDiv = document.createElement('div');
             slideDiv.className = 'slide';
-
             let batch = db.slice(i, i + 3);
             let cardsHTML = batch.map(p => {
                 let statusClass = p.stat.includes("Lulus") ? "status-lulus" : "status-ulang";
                 let statusText = p.stat.includes("Lulus") ? "LULUS PTM" : "PERLU MENDUDUKI SEMULA UJIAN KEFAHAMAN";
-
                 return `
                 <div class="card">
                     <div class="img-box">
-                        <img src="${p.id}.JPG" alt="${p.name}" onerror="if(this.src.indexOf('.JPG') !== -1){ this.src = '${p.id}.jpg'; } else { this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+'; }">
+                        <img src="${p.id}.JPG" alt="${p.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+';">
                         <div class="tag-id">${p.id}</div>
                     </div>
-                    
                     <div class="info-name">${p.name}</div>
-                    <div class="info-job">
-                        <span style="flex:1; padding-right:5px;">${p.pos}</span>
-                        <span class="dept-badge">${p.dept}</span>
-                    </div>
-                    
+                    <div class="info-job"><span>${p.pos}</span><span class="dept-badge">${p.dept}</span></div>
                     <div class="marks-container">
-                        <div class="mark-row">
-                            <span>DISIPLIN </span>
-                            <span>${p.dis}</span>
-                        </div>
-                        <div class="mark-row">
-                            <span>KEFAHAMAN </span>
-                            <span>${p.kef}</span>
-                        </div>
-                        <div class="mark-row">
-                            <span>KOMITMEN </span>
-                            <span>${p.kom}</span>
-                        </div>
-                        <div class="mark-row total">
-                            <span>JUMLAH</span>
-                            <span style="color:var(--royal-blue);">${p.jum}%</span>
-                        </div>
+                        <div class="mark-row"><span>DISIPLIN</span><span>${p.dis}</span></div>
+                        <div class="mark-row"><span>KEFAHAMAN</span><span>${p.kef}</span></div>
+                        <div class="mark-row"><span>KOMITMEN</span><span>${p.kom}</span></div>
+                        <div class="mark-row total"><span>JUMLAH</span><span>${p.jum}%</span></div>
                     </div>
-
                     <div class="status-box ${statusClass}">${statusText}</div>
-                </div>
-                `;
+                </div>`;
             }).join('');
-
-            slideDiv.innerHTML = `
-                <div class="header-title">DATA PENILAIAN PESERTA (REKOD ${i+1} HINGGA ${Math.min(i+3, 40)})</div>
-                <div class="grid-3">${cardsHTML}</div>
-            `;
+            slideDiv.innerHTML = `<div class="header-title">DATA PENILAIAN PESERTA (REKOD ${i+1}-${Math.min(i+3, 40)})</div><div class="grid-3">${cardsHTML}</div>`;
             container.appendChild(slideDiv);
         }
 
@@ -775,37 +503,42 @@ class UI {
         function changeSlide(direction) {
             slides[currentIndex].classList.remove('active');
             currentIndex += direction;
-            
             if (currentIndex >= slides.length) currentIndex = 0;
             if (currentIndex < 0) currentIndex = slides.length - 1;
-            
             slides[currentIndex].classList.add('active');
-            slides[currentIndex].scrollTop = 0; 
+            slides[currentIndex].scrollTop = 0;
             updateTracker();
         }
 
         function updateTracker() {
             document.getElementById('slide-tracker').innerText = `SLIDE: ${currentIndex + 1} / ${slides.length}`;
-            const progressPercent = (currentIndex / (slides.length - 1)) * 100;
-            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-bar').style.width = `${(currentIndex / (slides.length - 1)) * 100}%`;
         }
 
-        // JAM MASA NYATA
-        function updateClock() {
-            const now = new Date();
-            let h = now.getHours().toString().padStart(2, '0');
-            let m = now.getMinutes().toString().padStart(2, '0');
-            let s = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('live-clock').innerHTML = `<i class="fa-solid fa-clock"></i> ${h}:${m}:${s}`;
+        function toggleFullScreen() {
+            const elem = document.documentElement;
+            const btn = document.getElementById('fs-btn');
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().then(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-compress"></i> CLOSE FULL SCREEN';
+                }).catch(err => alert(`Error: ${err.message}`));
+            } else {
+                document.exitFullscreen();
+                btn.innerHTML = '<i class="fa-solid fa-expand"></i> FULL SCREEN';
+            }
         }
+
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('live-clock').innerText = now.toLocaleTimeString('en-GB');
+        }, 1000);
 
         window.addEventListener('keydown', (e) => {
             if (e.key === "ArrowRight") changeSlide(1);
             if (e.key === "ArrowLeft") changeSlide(-1);
+            if (e.key === "f") toggleFullScreen();
         });
 
-        setInterval(updateClock, 1000);
-        updateClock();
         updateTracker();
     </script>
 </body>
