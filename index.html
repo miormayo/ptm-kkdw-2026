@@ -86,7 +86,7 @@
             padding: 30px 40px;
             box-sizing: border-box;
             flex-direction: column;
-            overflow-y: auto; /* Membenarkan skrol pada mobile */
+            overflow-y: auto;
             animation: bootUp 0.4s ease-out forwards;
         }
 
@@ -300,12 +300,10 @@
         .btn:hover { background: var(--cyber-cyan); transform: scale(1.05); }
 
         /* --- MEDIA QUERIES UNTUK RESPONSIVE DESIGN --- */
-        /* Untuk Tablet / Skrin Sederhana */
         @media (max-width: 1100px) {
             .grid-3 { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Untuk Telefon Pintar / Skrin Kecil */
         @media (max-width: 768px) {
             .grid-3 { grid-template-columns: 1fr; }
             .slide { padding: 15px; }
@@ -377,7 +375,7 @@ int main() {
                         <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">01</span> Perutusan Pengerusi
                     </div>
                     <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: clamp(18px, 2.5vw, 32px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
-                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">02</span> Pengesahan Minit Mesyuarat Panel PTM Bil. 1/2025
+                        <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">02</span> Pengesahan Minit Mesyuarat Panel PTM Bil. 1/2026
                     </div>
                     <div style="background: white; border-left: 10px solid var(--royal-blue); padding: 20px; font-size: clamp(18px, 2.5vw, 32px); font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center;">
                         <span style="color: var(--cyber-cyan); font-family: 'Orbitron'; margin-right: 15px; font-size: clamp(24px, 3.5vw, 40px);">03</span> Pembentangan Laporan Penilaian Peserta
@@ -388,7 +386,7 @@ int main() {
                 </div>
             </div>
 
-            <!-- JANAAN DINAMIK SLAID 3 - 16 AKAN MASUK DI SINI -->
+            <!-- JANAAN DINAMIK SLAID 3 - 16 -->
             <div id="dynamic-participant-slides" style="display: contents;"></div>
 
             <!-- SLAID 17 -->
@@ -500,8 +498,7 @@ int main() {
                 return `
                 <div class="card">
                     <div class="img-box">
-                        <!-- AUTO-FALLBACK: JPG huruf kecil ke JPG huruf besar -->
-                        <img src="${p.id}.jpg" alt="${p.name}" onerror="if(this.src.indexOf('.jpg') !== -1){ this.src = '${p.id}.JPG'; } else { this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+'; }">
+                        <img src="${p.id}.JPG" alt="${p.name}" onerror="if(this.src.indexOf('.JPG') !== -1){ this.src = '${p.id}.jpg'; } else { this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5USUFEQSBHQU1CQVI8L3RleHQ+PC9zdmc+'; }">
                         <div class="tag-id">${p.id}</div>
                     </div>
                     
@@ -553,10 +550,7 @@ int main() {
             if (currentIndex < 0) currentIndex = slides.length - 1;
             
             slides[currentIndex].classList.add('active');
-            
-            // Auto-scroll slaid ke atas bila tukar (untuk skrin kecil)
             slides[currentIndex].scrollTop = 0;
-            
             updateTracker();
         }
 
