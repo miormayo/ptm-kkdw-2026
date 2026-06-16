@@ -468,7 +468,7 @@
                     <div class="info-job"><span>${p.pos}</span><span class="dept-badge">${p.dept}</span></div>
                     <div class="marks-container">
                         <div class="mark-row"><span>DISIPLIN</span><span>${p.dis}</span></div>
-                        <div class="mark-row"><span>KEFAHAMAN</span><span>${p.kef}</span></div>
+                        <div class="mark-row"><span>KEFAHAMAN</span><span style="${parseFloat(p.kef) < 30 ? 'color: var(--fail-red); background: #fee2e2; padding: 2px 8px; border-radius: 5px; text-align: center;' : ''}">${p.kef}</span></div>
                         <div class="mark-row"><span>KOMITMEN</span><span>${p.kom}</span></div>
                         <div class="mark-row total"><span>JUMLAH</span><span>${p.jum}%</span></div>
                     </div>
