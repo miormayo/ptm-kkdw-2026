@@ -225,7 +225,7 @@
             padding-bottom: 5px;
         }
         .ulasan-text {
-            font-size: 22px; /* SAIZ BESAR */
+            font-size: 22px; 
             line-height: 1.5;
             color: var(--text-dark);
             font-weight: 500;
@@ -236,10 +236,10 @@
         }
 
         /* =========================================
-           KOD KHAS UNTUK CETAKAN (PRINTING)
+           KOD KHAS UNTUK CETAKAN (PRINTING) - TELAH DIKEMASKINI 
            ========================================= */
         @media print {
-            /* 1. Sembunyikan elemen yang tidak perlu dicetak (butang, ticker, grid background) */
+            /* 1. Sembunyikan UI yang tidak perlu */
             .bg-grid, 
             #progress-bar, 
             .cyber-ticker, 
@@ -247,42 +247,60 @@
                 display: none !important;
             }
 
-            /* 2. Reset susun atur body dan viewport supaya sesuai untuk kertas */
-            body, #viewport {
+            /* 2. Reset struktur asas ke bentuk blok (mengelakkan flexbox menyorokkan div ketika print) */
+            body, html {
                 height: auto !important;
-                width: 100% !important;
-                overflow: visible !important;
                 background: white !important;
                 display: block !important;
+                overflow: visible !important;
             }
 
-            #slides-wrapper {
+            #viewport, #slides-wrapper {
+                height: auto !important;
+                width: 100% !important;
                 display: block !important;
                 position: static !important;
+                overflow: visible !important;
             }
 
-            /* 3. Tunjukkan semua slide dan paksa setiap slide masuk ke muka surat baharu */
+            /* 3. Betulkan ralat slide terpotong & hilang */
             .slide {
                 position: relative !important;
                 opacity: 1 !important;
                 visibility: visible !important;
                 transform: none !important;
-                display: flex !important;
-                flex-direction: column !important;
-                height: 100vh !important; /* Penuhkan satu muka surat A4 */
-                page-break-after: always !important; /* Paksa muka surat baharu */
+                display: block !important; /* Gunakan block, bukan flex */
+                height: auto !important; /* Biar ia memanjang natural mengikut saiz kad */
+                page-break-after: always !important; /* Paksa muka surat baru selepas setiap slide */
                 break-after: page !important;
-                padding: 20px !important;
+                padding: 20px 40px !important; /* Kurangkan padding supaya muat A4 */
+                margin: 0 !important;
                 overflow: visible !important;
             }
 
-            /* 4. Elakkan kad peserta terpotong separuh ke muka surat sebelah */
+            /* 4. Pastikan header tidak duduk di hujung kertas (terpisah dari kad) */
+            .header-title {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+                margin-bottom: 30px !important;
+            }
+
+            /* 5. Pastikan grid dan kad dicetak tanpa terpotong */
+            .grid-3 {
+                display: grid !important;
+                gap: 20px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                padding-bottom: 0 !important;
+            }
+
             .card {
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+                break-after: auto !important;
             }
 
-            /* 5. Paksa browser cetak warna background dan garisan */
+            /* 6. Pastikan warna cetakan lekat pada kertas */
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
