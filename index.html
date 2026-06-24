@@ -234,6 +234,60 @@
             color: var(--cyber-cyan);
             font-weight: 900;
         }
+
+        /* =========================================
+           KOD KHAS UNTUK CETAKAN (PRINTING)
+           ========================================= */
+        @media print {
+            /* 1. Sembunyikan elemen yang tidak perlu dicetak (butang, ticker, grid background) */
+            .bg-grid, 
+            #progress-bar, 
+            .cyber-ticker, 
+            .controls {
+                display: none !important;
+            }
+
+            /* 2. Reset susun atur body dan viewport supaya sesuai untuk kertas */
+            body, #viewport {
+                height: auto !important;
+                width: 100% !important;
+                overflow: visible !important;
+                background: white !important;
+                display: block !important;
+            }
+
+            #slides-wrapper {
+                display: block !important;
+                position: static !important;
+            }
+
+            /* 3. Tunjukkan semua slide dan paksa setiap slide masuk ke muka surat baharu */
+            .slide {
+                position: relative !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                display: flex !important;
+                flex-direction: column !important;
+                height: 100vh !important; /* Penuhkan satu muka surat A4 */
+                page-break-after: always !important; /* Paksa muka surat baharu */
+                break-after: page !important;
+                padding: 20px !important;
+                overflow: visible !important;
+            }
+
+            /* 4. Elakkan kad peserta terpotong separuh ke muka surat sebelah */
+            .card {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* 5. Paksa browser cetak warna background dan garisan */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
     </style>
 </head>
 <body>
