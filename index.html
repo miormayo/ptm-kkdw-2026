@@ -236,74 +236,79 @@
         }
 
         /* =========================================
-           KOD KHAS UNTUK CETAKAN (PRINTING) - TELAH DIKEMASKINI 
+           KOD KHAS UNTUK CETAKAN (PRINTING) - VERSI V3 (FIX BLANK PAGES)
            ========================================= */
         @media print {
-            /* 1. Sembunyikan UI yang tidak perlu */
-            .bg-grid, 
-            #progress-bar, 
-            .cyber-ticker, 
-            .controls {
+            /* 1. Padam sepenuhnya elemen yang tidak dicetak */
+            .bg-grid, #progress-bar, .cyber-ticker, .controls {
                 display: none !important;
             }
 
-            /* 2. Reset struktur asas ke bentuk blok (mengelakkan flexbox menyorokkan div ketika print) */
-            body, html {
+            /* 2. PAKSA SEMUA parent container membuang had height (Ini punca utama muka surat terpotong) */
+            html, body, #viewport, #slides-wrapper, #dynamic-participant-slides {
                 height: auto !important;
-                background: white !important;
-                display: block !important;
-                overflow: visible !important;
-            }
-
-            #viewport, #slides-wrapper {
-                height: auto !important;
+                min-height: 0 !important;
+                max-height: none !important;
                 width: 100% !important;
                 display: block !important;
                 position: static !important;
                 overflow: visible !important;
+                background: white !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
-            /* 3. Betulkan ralat slide terpotong & hilang */
+            /* 3. Aturan Slide supaya sekata & tidak bergelut sesama sendiri */
             .slide {
-                position: relative !important;
+                position: static !important;
                 opacity: 1 !important;
                 visibility: visible !important;
                 transform: none !important;
-                display: block !important; /* Gunakan block, bukan flex */
-                height: auto !important; /* Biar ia memanjang natural mengikut saiz kad */
-                page-break-after: always !important; /* Paksa muka surat baru selepas setiap slide */
+                display: block !important;
+                height: auto !important;
+                page-break-after: always !important; /* Mesti lompat muka surat baru */
                 break-after: page !important;
-                padding: 20px 40px !important; /* Kurangkan padding supaya muat A4 */
-                margin: 0 !important;
-                overflow: visible !important;
+                page-break-inside: avoid !important;
+                padding: 20px !important;
+                margin: 0 0 20px 0 !important;
             }
 
-            /* 4. Pastikan header tidak duduk di hujung kertas (terpisah dari kad) */
-            .header-title {
-                page-break-after: avoid !important;
-                break-after: avoid !important;
-                margin-bottom: 30px !important;
-            }
-
-            /* 5. Pastikan grid dan kad dicetak tanpa terpotong */
+            /* 4. Tukar CSS Grid kepada Flexbox untuk mengelak bug cetakan browser */
             .grid-3 {
-                display: grid !important;
-                gap: 20px !important;
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: stretch !important;
+                gap: 15px !important;
+                padding-bottom: 0 !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
-                padding-bottom: 0 !important;
             }
 
             .card {
+                flex: 1 1 0 !important; /* Paksa setiap kad pecah 3 bahagian sama rata */
+                width: 32% !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
-                break-after: auto !important;
+                display: block !important;
             }
 
-            /* 6. Pastikan warna cetakan lekat pada kertas */
+            /* 5. Lindungi header dan elemen dalam supaya tidak terpisah dari page / terpotong */
+            .header-title {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+                margin-bottom: 20px !important;
+            }
+            .img-box, .marks-container, .status-box {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* 6. Kekalkan warna & grafik */
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
         }
     </style>
@@ -415,7 +420,7 @@
                 </div>
             </div>
 
-            <div id="dynamic-participant-slides" style="display: contents;"></div>
+            <div id="dynamic-participant-slides"></div>
 
             <div class="slide">
                 <div class="header-title" style="background: var(--cyber-cyan);">ULASAN FASILITATOR (BAKAT BAHARU KKDW)</div>
